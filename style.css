@@ -77,7 +77,16 @@ h2 .y{color:var(--hot)}
 .hero-stats{display:flex;gap:30px;margin-top:36px}
 .hero-stats b{font-family:'Display';font-size:28px;display:block;line-height:1;color:var(--yellow)}
 .hero-stats span{font-weight:700;font-size:11px;letter-spacing:.16em;opacity:.6}
-.hero-maskot{align-self:end;max-width:420px;width:100%;margin-left:auto;filter:drop-shadow(0 8px 14px rgba(0,0,0,.35))}
+.hero-maskot{align-self:end;max-width:400px;width:100%;margin-left:auto;position:relative;z-index:2;
+  filter:drop-shadow(-6px 6px 6px rgba(4,20,36,.45)) drop-shadow(0 18px 14px rgba(4,20,36,.4));
+  animation:floaty 5.5s ease-in-out infinite}
+.hero-shadow{position:absolute;right:0;bottom:-6px;width:78%;height:44px;z-index:1;
+  background:radial-gradient(ellipse at center,rgba(4,20,36,.5) 0%,rgba(4,20,36,0) 70%);
+  border-radius:50%;animation:pulse 5.5s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%,100%{transform:scaleX(1);opacity:.9}50%{transform:scaleX(.86);opacity:.6}}
+.hero-maskot-wrap{position:relative;align-self:end}
+@media (prefers-reduced-motion:reduce){.hero-maskot,.hero-shadow{animation:none}}
 .hero-photo{height:190px;overflow:hidden}
 .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(1) contrast(1.08) brightness(.9)}
 
@@ -266,7 +275,8 @@ h2 .y{color:var(--hot)}
   .gal-tall img{height:210px}
   .daftar-in,.donasi-in{grid-template-columns:1fr}
   .hero-in{grid-template-columns:1fr;min-height:0;padding-top:38px}
-  .hero-maskot{max-width:300px;margin:10px auto 0;order:-1}
+  .hero-maskot{max-width:280px}
+  .hero-maskot-wrap{margin:0 auto;order:-1}
   .hero-photo{height:150px}
   .daftar-maskot{width:110px}
 }
