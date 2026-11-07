@@ -165,15 +165,15 @@ h2 .y{color:var(--hot)}
 .req-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:34px}
 .req{border-radius:var(--radius);padding:28px 26px;box-shadow:var(--shadow)}
 .req-a{background:var(--navy);color:var(--cream)}
-.req-b{background:var(--white);border:1px solid rgba(26,73,115,.18)}
+.req-b{background:var(--navy);color:var(--cream)}
 .req-t{font-family:'Display';font-size:21px}
 .req-fee{font-family:'Display';font-size:34px;margin-top:10px;color:var(--hot)}
-.req-b .req-fee{color:var(--navy)}
+.req-b .req-fee{color:var(--hot)}
 .req ul{list-style:none;margin-top:18px}
 .req li{position:relative;padding-left:28px;font-size:14.5px;line-height:1.55;margin-bottom:12px;opacity:.9}
 .req li:before{content:'';position:absolute;left:0;top:3px;width:16px;height:16px;border-radius:50%;
   background:var(--hot) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 13l4 4 10-11" fill="none" stroke="%231A4973" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg>') center/10px no-repeat}
-.req-b li:before{background-color:rgba(26,73,115,.12)}
+.req-b li:before{background-color:var(--hot)}
 .example{margin-top:26px;background:var(--white);border:1px solid rgba(26,73,115,.16);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow)}
 .example-t{font-family:'Display';font-size:19px}
 .example-s{font-size:14px;opacity:.8;margin-top:8px;line-height:1.6;max-width:560px}
