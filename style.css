@@ -74,7 +74,10 @@ h2 .y{color:var(--hot)}
 .hero-sub2{font-weight:600;font-size:13px;letter-spacing:.28em;margin-top:6px;opacity:.8;overflow-wrap:anywhere}
 .hero-desc{margin-top:18px;font-size:16px;line-height:1.65;max-width:460px;color:rgba(251,246,234,.85)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
-.hero-stats{display:flex;gap:30px;margin-top:36px}
+.hero-stats{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap;align-items:center}
+.hero-stats .stat-loc{display:flex;align-items:center;gap:10px}
+.hero-stats .stat-loc b{font-size:16px;line-height:1.15;color:var(--yellow);display:block;letter-spacing:.02em}
+.hero-stats .stat-loc span{font-weight:700;font-size:11px;letter-spacing:.14em;opacity:.65;display:block;margin-top:3px}
 .hero-stats b{font-family:'Display';font-size:28px;display:block;line-height:1;color:var(--yellow)}
 .hero-stats span{font-weight:700;font-size:11px;letter-spacing:.16em;opacity:.6}
 .hero-maskot{align-self:end;max-width:400px;width:100%;margin-left:auto;position:relative;z-index:2;
