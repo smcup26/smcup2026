@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Display';src:url('fonts/ArchivoBlack.ttf');}
+@font-face{font-family:'Body';src:url('fonts/OpenSans-Bold.ttf');font-weight:700;}
+@font-face{font-family:'Body';src:url('fonts/OpenSans-Semibold.ttf');font-weight:600;}
+@font-face{font-family:'Body';src:url('fonts/OpenSans-Regular.ttf');font-weight:400;}
+:root{
+  --navy:#1A4973; --navy-d:#0E2E4A;
+  --yellow:#F5DD5E; --hot:#FFD200; --cream:#FBF6EA; --white:#fff;
+}
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Body';-webkit-print-color-adjust:exact;print-color-adjust:exact;background:#999}
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;page-break-after:always;
+  background:var(--cream);color:var(--navy)}
+.page:last-child{page-break-after:auto}
+.grain{position:absolute;inset:0;background-image:url('fonts/../assets/grain.png');background-size:130mm;opacity:.05;mix-blend-mode:multiply;pointer-events:none;z-index:30}
+
+/* kop surat */
+.kop{position:relative;z-index:10;display:flex;align-items:center;gap:6mm;padding:8mm 18mm 0}
+.kop .logo{width:44mm;background:#fff;padding:2.2mm 2.8mm;border-radius:1.6mm;border:.4mm solid rgba(26,73,115,.15)}
+.kop .logo img{width:100%;display:block}
+.kop .t .l1{font-family:'Display';font-size:7.2mm;line-height:1;color:var(--navy)}
+.kop .t .l2{font-weight:700;font-size:3mm;letter-spacing:.22em;color:var(--navy);opacity:.6;margin-top:2mm}
+.kop .tag{margin-left:auto;font-weight:700;font-size:2.6mm;letter-spacing:.16em;color:var(--navy);
+  background:var(--yellow);padding:2mm 3.6mm;border-radius:1.2mm}
+
+.title{position:relative;z-index:10;text-align:center;margin-top:7mm;padding:0 18mm}
+.title .t1{font-family:'Display';font-size:10mm;line-height:1.02;color:var(--navy)}
+.title .t2{font-family:'Display';font-size:10mm;line-height:1.02;color:var(--navy)}
+.title .t2 .y{color:var(--hot)}
+.title .t3{margin-top:3mm;font-weight:700;font-size:3.4mm;letter-spacing:.3em;color:var(--navy);opacity:.6}
+.title .rule{width:30mm;height:1.4mm;background:var(--hot);margin:4mm auto 0}
+
+.body{position:relative;z-index:10;padding:4mm 18mm 0}
+.sec{margin-top:5mm}
+.sec h2{display:flex;align-items:center;gap:4mm;font-family:'Display';font-size:5.4mm;color:var(--navy);letter-spacing:.02em}
+.sec h2 .no{flex:none;width:11mm;height:11mm;border-radius:2mm;background:var(--navy);color:var(--yellow);
+  font-family:'Display';font-size:4.6mm;display:flex;align-items:center;justify-content:center}
+.sec ol{margin-top:4mm;padding-left:8mm}
+.sec ol li{font-weight:400;font-size:3.15mm;line-height:1.48;margin-bottom:1.6mm;color:rgba(14,46,74,.9)}
+.sec ol li b{font-weight:700;color:var(--navy)}
+.sec ol li::marker{font-weight:700;color:var(--navy)}
+.note{margin-top:5mm;background:var(--white);border-left:1.6mm solid var(--hot);border-radius:1.6mm;
+  padding:3.5mm 4.5mm;font-weight:600;font-size:3mm;line-height:1.5;color:var(--navy)}
+
+.foot{position:absolute;left:18mm;right:18mm;bottom:11mm;z-index:10;display:flex;justify-content:space-between;align-items:flex-end;gap:8mm}
+.foot .k{font-weight:700;font-size:2.5mm;letter-spacing:.2em;opacity:.55}
+.foot .v{font-family:'Display';font-size:5.4mm;color:var(--navy);margin-top:1.6mm}
+.foot .w{font-weight:600;font-size:3.2mm;opacity:.75;margin-top:1mm}
+.foot .pn{font-family:'Display';font-size:4mm;opacity:.35}
+</style>
+</head>
+<body>
+
+<!-- ============ HALAMAN 1 ============ -->
+<div class="page">
+  <div class="kop">
+    <div class="logo"><img src="assets/logo.png"></div>
+    <div class="tag">TAHUN 2026</div>
+  </div>
+
+  <div class="title">
+    <div class="t1">PEDOMAN SM CUP</div>
+    <div class="t2">SINERGI <span class="y">MAJU CUP</span> 2026</div>
+    <div class="t3">BADMINTON FUN TOURNAMENT</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="body">
+    <div class="sec">
+      <h2><span class="no">A</span>KETENTUAN UMUM</h2>
+      <ol>
+        <li>Pertandingan akan dilaksanakan pada tanggal <b>5 dan 6 Desember 2026</b> di <b>Powr Hall (Red Carpet)</b>, Yogyakarta. Hari pertama dimulai pukul 07.00 WIB dan hari kedua pukul 08.00 WIB.</li>
+        <li>Pendaftaran dibuka dari tanggal <b>18 hingga 20 November 2026</b>. Apabila sebelum tanggal 20 November kuota sudah terpenuhi, maka pendaftaran secara otomatis ditutup.</li>
+        <li>Peserta yang dapat mengikuti turnamen adalah penerima beasiswa LPDP UGM yang berstatus <b>awardee aktif</b> dan <b>alumni LPDP UGM</b>. Pendaftar awardee aktif wajib melampirkan screenshot halaman Profil pada portal e-Beasiswa LPDP yang menunjukkan status <b>&ldquo;Sedang Studi (Dalam Pembiayaan)&rdquo;</b>, serta menuliskan angkatan PK. Pendaftar alumni wajib menuliskan angkatan PK.</li>
+        <li>Pendaftaran bersifat <b>perseorangan (bukan tim)</b> dengan biaya registrasi sebesar <b>Rp45.000,-</b> per orang untuk awardee aktif dan <b>Rp65.000,-</b> per orang untuk alumni. Biaya pendaftaran sudah termasuk shuttlecock, konsumsi selama pertandingan, dan e-sertifikat peserta.</li>
+        <li>Pemilihan partner bermain dilakukan secara <b>acak</b> melalui aplikasi saat Technical Meeting, tanpa memandang status peserta (awardee aktif maupun alumni).</li>
+        <li>Kuota alumni dibatasi <b>maksimal 30%</b> dari kuota masing-masing kategori dan tidak melebihi jumlah peserta awardee aktif. Apabila hingga tanggal <b>20 November 2026 pukul 20.00 WIB</b> masih terdapat sisa kuota awardee aktif, sisa kuota tersebut dialihkan untuk alumni sesuai urutan daftar tunggu.</li>
+        <li>Technical Meeting akan dilakukan secara daring pada tanggal <b>23 November 2026</b>.</li>
+      </ol>
+    </div>
+
+    <div class="sec">
+      <h2><span class="no">B</span>KETENTUAN PERTANDINGAN</h2>
+      <ol>
+        <li>Kategori yang dipertandingkan adalah <b>ganda putra, ganda putri, dan ganda campuran</b>.</li>
+        <li>Kuota kategori ganda putra adalah <b>40 orang (20 tim)</b>, ganda putri <b>20 orang (10 tim)</b>, dan ganda campuran <b>20 orang (10 tim)</b>.</li>
+        <li>Peserta diperbolehkan bermain <b>rangkap di dua kategori</b> yang berbeda, baik awardee aktif maupun alumni.</li>
+        <li>Pertandingan menggunakan <b>sistem gugur</b> dan <b>rally point 21</b>. Babak awal dimainkan dengan 1 game, sedangkan semifinal dan final menggunakan format <b>best of 3 game</b>.</li>
+        <li>Shuttlecock disediakan oleh panitia; <b>raket disediakan sendiri oleh peserta</b>. Sepatu pemain wajib menggunakan sepatu bulutangkis (bersol soft, tidak keras).</li>
+        <li>Pengundian pasangan maupun jadwal pertandingan akan dilakukan saat Technical Meeting. Peserta yang memperoleh <b>bye</b> pada undian akan langsung melaju ke babak berikutnya.</li>
+        <li>Biaya pendaftaran yang telah dibayarkan tidak dapat dikembalikan. Pengalihan slot kepada peserta lain dapat diajukan kepada panitia paling lambat sebelum Technical Meeting.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="foot" style="justify-content:flex-end"><div class="pn">1 / 2</div></div>
+  <div class="grain"></div>
+</div>
+
+<!-- ============ HALAMAN 2 ============ -->
+<div class="page">
+  <div class="kop">
+    <div class="logo"><img src="assets/logo.png"></div>
+    <div class="tag">TAHUN 2026</div>
+  </div>
+
+  <div class="title">
+    <div class="t1">PEDOMAN SM CUP</div>
+    <div class="t2">SINERGI <span class="y">MAJU CUP</span> 2026</div>
+    <div class="t3">BADMINTON FUN TOURNAMENT</div>
+    <div class="rule"></div>
+  </div>
+
+  <div class="body">
+    <div class="sec">
+      <h2><span class="no">C</span>PERATURAN PERTANDINGAN</h2>
+      <ol>
+        <li>Peserta diharapkan tiba di venue <b>30 menit sebelum</b> dimulainya pertandingan untuk melakukan registrasi ulang.</li>
+        <li>Peserta akan dianggap <b>walkout</b> jika setelah pemanggilan ketiga tidak dapat hadir di lapangan.</li>
+        <li>Jumlah shuttlecock yang disediakan maksimal <b>dua buah</b> untuk setiap pertandingan pada babak awal dan <b>tiga buah</b> untuk semifinal dan final.</li>
+        <li>Setiap pertandingan dipimpin oleh <b>satu orang wasit utama</b>. Pada babak semifinal dan final didampingi <b>dua orang hakim garis</b>.</li>
+        <li>Keputusan wasit bersifat <b>mutlak</b> dan tidak dapat diganggu gugat.</li>
+        <li>Aturan pertandingan yang tidak tercantum mengikuti <b>aturan dasar permainan bulutangkis</b>.</li>
+      </ol>
+    </div>
+
+    <div class="sec">
+      <h2><span class="no">D</span>PENGUMUMAN</h2>
+      <ol>
+        <li>Peserta tidak diperkenankan membawa makanan masuk ke dalam venue. <b>Konsumsi selama pertandingan disediakan oleh panitia.</b></li>
+        <li>Peserta dapat membawa air minum sendiri atau membelinya di stand yang disediakan oleh panitia.</li>
+        <li>Sepatu atau sendal dari luar wajib dilepas dan dapat diletakkan di depan pintu masuk venue.</li>
+        <li><b>E-sertifikat</b> peserta dibagikan selambat-lambatnya 7 hari setelah kegiatan berakhir.</li>
+      </ol>
+    </div>
+
+    <div class="note">
+      Panitia dapat mengubah ketentuan dalam pedoman ini apabila diperlukan demi kelancaran pertandingan.
+      Perubahan akan diumumkan kepada seluruh peserta melalui grup komunikasi resmi dan pada saat Technical Meeting.
+      Keputusan panitia bersifat final.
+    </div>
+  </div>
+
+  <div class="foot">
+    <div>
+      <div class="k">NARAHUBUNG PANITIA</div>
+      <div class="v">Alfin — 0852-9893-6023</div>
+      <div class="w">Konfirmasi pendaftaran dan pengalihan slot</div>
+    </div>
+    <div class="pn">2 / 2</div>
+  </div>
+  <div class="grain"></div>
+</div>
+
+</body></html>
