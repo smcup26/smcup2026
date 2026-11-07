@@ -76,7 +76,7 @@ h2 .y{color:var(--hot)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
 .hero-stats{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap;align-items:center}
 .hero-stats .stat-loc{display:flex;align-items:center;gap:10px}
-.hero-stats .stat-loc b{font-size:16px;line-height:1.15;color:var(--yellow);display:block;letter-spacing:.02em}
+.hero-stats .stat-loc b{font-size:16px;line-height:1.15;color:var(--yellow);display:block;letter-spacing:.02em;white-space:nowrap}
 .hero-stats .stat-loc span{font-weight:700;font-size:11px;letter-spacing:.14em;opacity:.65;display:block;margin-top:3px}
 .hero-stats b{font-family:'Display';font-size:28px;display:block;line-height:1;color:var(--yellow)}
 .hero-stats span{font-weight:700;font-size:11px;letter-spacing:.16em;opacity:.6}
@@ -284,8 +284,10 @@ h2 .y{color:var(--hot)}
   .daftar-maskot{width:110px}
 }
 @media (max-width:640px){
-  .hero-stats{gap:18px}
-  .hero-stats .stat-loc b{font-size:13px}
+  .hero-stats{gap:14px}
+  .hero-stats b{font-size:22px}
+  .hero-stats .stat-loc{gap:8px}
+  .hero-stats .stat-loc b{font-size:12px}
   .hero-stats .stat-loc span{font-size:10px}
   .hero-stats .stat-loc svg{width:20px;height:20px}
   .menu{display:none;position:absolute;top:64px;left:0;right:0;background:var(--cream);flex-direction:column;
