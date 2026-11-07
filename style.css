@@ -87,8 +87,8 @@ h2 .y{color:var(--hot)}
 @keyframes pulse{0%,100%{transform:scaleX(1);opacity:.9}50%{transform:scaleX(.86);opacity:.6}}
 .hero-maskot-wrap{position:relative;align-self:end}
 @media (prefers-reduced-motion:reduce){.hero-maskot,.hero-shadow{animation:none}}
-.hero-photo{height:190px;overflow:hidden}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:grayscale(1) contrast(1.08) brightness(.9)}
+.hero-photo{height:230px;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 68%;filter:grayscale(1) contrast(1.08) brightness(.9)}
 
 /* ---------- countdown ---------- */
 .count{background:var(--yellow);color:var(--navy);padding:22px 0;border-bottom:1px solid rgba(26,73,115,.15)}
