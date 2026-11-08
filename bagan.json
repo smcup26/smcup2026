@@ -594,5 +594,23 @@
    ],
    "catatan": ""
   }
- ]
+ ],
+ "booking": {
+  "hari1": {
+   "mulai": "08:00",
+   "selesai": "12:00",
+   "lapangan": 4,
+   "harga_per_jam": 35000
+  },
+  "hari2": {
+   "mulai": "08:00",
+   "selesai": "13:00",
+   "lapangan": 4,
+   "harga_per_jam": 35000
+  }
+ },
+ "jadwal_kaki": {
+  "hari1": "Semua 28 pertandingan babak awal selesai sekitar pukul 11.45.",
+  "hari2": "Semifinal & final selesai sekitar pukul 10.00, dilanjutkan penyerahan hadiah (10.00–10.30) dan Mabar Kelurahan (10.30–13.00)."
+ }
 }
