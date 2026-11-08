@@ -86,7 +86,7 @@ function renderBagan(data) {
       const mh = ms.filter(m => m.hari === hari);
       if (!mh.length) continue;
       const tgl = hari === 1 ? 'Hari 1 · Sabtu, 5 Desember 2026' : 'Hari 2 · Minggu, 6 Desember 2026';
-      const ket = hari === 1 ? '1 game · 21 poin' : 'Best of 3 game 21 poin';
+      const ket = 'Best of 3 game · 15 poin';
       html += '<div class="day-block">' +
         '<div class="day-head"><span class="tgl">' + tgl + '</span>' +
         '<span class="ket ' + (hari === 1 ? 'd1' : 'd2') + '">' + ket + '</span></div>';
