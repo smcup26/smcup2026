@@ -1,0 +1,598 @@
+{
+ "catatan": "Pasangan diundi pada Technical Meeting 23 November 2026. Halaman ini diperbarui setelah undian.",
+ "keterangan_bye": "Pasangan yang diundi pada urutan pertama menerima bye (langsung ke ronde berikutnya). Ganda Putra: 12 bye, Ganda Putri: 6 bye, Ganda Campuran: 6 bye.",
+ "matches": [
+  {
+   "id": "GP-PO1",
+   "kat": "GANDA PUTRA",
+   "ronde": "Play-off",
+   "hari": 1,
+   "jam": "08:00",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-PO2",
+   "kat": "GANDA PUTRA",
+   "ronde": "Play-off",
+   "hari": 1,
+   "jam": "08:00",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-PO3",
+   "kat": "GANDA PUTRA",
+   "ronde": "Play-off",
+   "hari": 1,
+   "jam": "08:00",
+   "lapangan": 3,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-PO4",
+   "kat": "GANDA PUTRA",
+   "ronde": "Play-off",
+   "hari": 1,
+   "jam": "08:00",
+   "lapangan": 4,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-16-1",
+   "kat": "GANDA PUTRA",
+   "ronde": "16 Besar",
+   "hari": 1,
+   "jam": "09:00",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "BYE-1",
+    "GP-PO1"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-16-2",
+   "kat": "GANDA PUTRA",
+   "ronde": "16 Besar",
+   "hari": 1,
+   "jam": "09:00",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "BYE-2",
+    "GP-PO2"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-16-3",
+   "kat": "GANDA PUTRA",
+   "ronde": "16 Besar",
+   "hari": 1,
+   "jam": "09:00",
+   "lapangan": 3,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "BYE-3",
+    "GP-PO3"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-16-4",
+   "kat": "GANDA PUTRA",
+   "ronde": "16 Besar",
+   "hari": 1,
+   "jam": "09:00",
+   "lapangan": 4,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "BYE-4",
+    "GP-PO4"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-16-5",
+   "kat": "GANDA PUTRA",
+   "ronde": "16 Besar",
+   "hari": 1,
+   "jam": "09:30",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-16-6",
+   "kat": "GANDA PUTRA",
+   "ronde": "16 Besar",
+   "hari": 1,
+   "jam": "09:30",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-16-7",
+   "kat": "GANDA PUTRA",
+   "ronde": "16 Besar",
+   "hari": 1,
+   "jam": "09:30",
+   "lapangan": 3,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-16-8",
+   "kat": "GANDA PUTRA",
+   "ronde": "16 Besar",
+   "hari": 1,
+   "jam": "09:30",
+   "lapangan": 4,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-QF1",
+   "kat": "GANDA PUTRA",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "10:30",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GP-16-1",
+    "GP-16-2"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-QF2",
+   "kat": "GANDA PUTRA",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "10:30",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GP-16-3",
+    "GP-16-4"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-QF3",
+   "kat": "GANDA PUTRA",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "10:30",
+   "lapangan": 3,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GP-16-5",
+    "GP-16-6"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-QF4",
+   "kat": "GANDA PUTRA",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "10:30",
+   "lapangan": 4,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GP-16-7",
+    "GP-16-8"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-SF1",
+   "kat": "GANDA PUTRA",
+   "ronde": "Semifinal",
+   "hari": 2,
+   "jam": "09:00",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GP-QF1",
+    "GP-QF2"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-SF2",
+   "kat": "GANDA PUTRA",
+   "ronde": "Semifinal",
+   "hari": 2,
+   "jam": "09:00",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GP-QF3",
+    "GP-QF4"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GP-F",
+   "kat": "GANDA PUTRA",
+   "ronde": "Final",
+   "hari": 2,
+   "jam": "11:00",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GP-SF1",
+    "GP-SF2"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GPutri-PO1",
+   "kat": "GANDA PUTRI",
+   "ronde": "Play-off",
+   "hari": 1,
+   "jam": "08:30",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GPutri-PO2",
+   "kat": "GANDA PUTRI",
+   "ronde": "Play-off",
+   "hari": 1,
+   "jam": "08:30",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GPutri-QF1",
+   "kat": "GANDA PUTRI",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "11:00",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "BYE-1",
+    "BYE-5"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GPutri-QF2",
+   "kat": "GANDA PUTRI",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "11:00",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "BYE-2",
+    "BYE-6"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GPutri-QF3",
+   "kat": "GANDA PUTRI",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "11:00",
+   "lapangan": 3,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GPutri-PO1",
+    "BYE-7"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GPutri-QF4",
+   "kat": "GANDA PUTRI",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "11:00",
+   "lapangan": 4,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GPutri-PO2",
+    "BYE-8"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GPutri-SF1",
+   "kat": "GANDA PUTRI",
+   "ronde": "Semifinal",
+   "hari": 2,
+   "jam": "09:00",
+   "lapangan": 3,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GPutri-QF1",
+    "GPutri-QF2"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GPutri-SF2",
+   "kat": "GANDA PUTRI",
+   "ronde": "Semifinal",
+   "hari": 2,
+   "jam": "09:00",
+   "lapangan": 4,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GPutri-QF3",
+    "GPutri-QF4"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GPutri-F",
+   "kat": "GANDA PUTRI",
+   "ronde": "Final",
+   "hari": 2,
+   "jam": "11:00",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GPutri-SF1",
+    "GPutri-SF2"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GC-PO1",
+   "kat": "GANDA CAMPURAN",
+   "ronde": "Play-off",
+   "hari": 1,
+   "jam": "08:30",
+   "lapangan": 3,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GC-PO2",
+   "kat": "GANDA CAMPURAN",
+   "ronde": "Play-off",
+   "hari": 1,
+   "jam": "08:30",
+   "lapangan": 4,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    null,
+    null
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GC-QF1",
+   "kat": "GANDA CAMPURAN",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "11:30",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "BYE-1",
+    "BYE-5"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GC-QF2",
+   "kat": "GANDA CAMPURAN",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "11:30",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "BYE-2",
+    "BYE-6"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GC-QF3",
+   "kat": "GANDA CAMPURAN",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "11:30",
+   "lapangan": 3,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GC-PO1",
+    "BYE-7"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GC-QF4",
+   "kat": "GANDA CAMPURAN",
+   "ronde": "Perempat Final",
+   "hari": 1,
+   "jam": "11:30",
+   "lapangan": 4,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GC-PO2",
+    "BYE-8"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GC-SF1",
+   "kat": "GANDA CAMPURAN",
+   "ronde": "Semifinal",
+   "hari": 2,
+   "jam": "10:00",
+   "lapangan": 1,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GC-QF1",
+    "GC-QF2"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GC-SF2",
+   "kat": "GANDA CAMPURAN",
+   "ronde": "Semifinal",
+   "hari": 2,
+   "jam": "10:00",
+   "lapangan": 2,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GC-QF3",
+    "GC-QF4"
+   ],
+   "catatan": ""
+  },
+  {
+   "id": "GC-F",
+   "kat": "GANDA CAMPURAN",
+   "ronde": "Final",
+   "hari": 2,
+   "jam": "11:15",
+   "lapangan": 3,
+   "tim_a": null,
+   "tim_b": null,
+   "skor": "",
+   "dari": [
+    "GC-SF1",
+    "GC-SF2"
+   ],
+   "catatan": ""
+  }
+ ]
+}
