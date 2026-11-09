@@ -19,9 +19,9 @@ const FEE_AKTIF  = 45000;
 const FEE_ALUMNI = 65000;
 
 const KUOTA = {
-  'GANDA PUTRA':    { total: 40, alumni_maks: 16 },
-  'GANDA PUTRI':    { total: 20, alumni_maks: 10 },
-  'GANDA CAMPURAN': { total: 20, alumni_maks: 10 }
+  'GANDA PUTRA':    { total: 40, alumni_maks: 12 },
+  'GANDA PUTRI':    { total: 20, alumni_maks: 6 },
+  'GANDA CAMPURAN': { total: 20, alumni_maks: 6 }
 };
 
 const WA_NUMBER = '6285298936023';   // nomor narahubung (format internasional)
