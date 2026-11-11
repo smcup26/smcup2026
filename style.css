@@ -72,6 +72,9 @@ h2 .y{color:var(--hot)}
 .hero h1 .y{color:var(--yellow)}
 .hero-sub{font-weight:700;font-size:15px;letter-spacing:.34em;margin-top:16px;color:var(--yellow);overflow-wrap:anywhere}
 .hero-sub2{font-weight:600;font-size:13px;letter-spacing:.28em;margin-top:6px;opacity:.8;overflow-wrap:anywhere}
+.hero-date{display:inline-flex;align-items:center;gap:7px;margin-top:10px;
+  background:rgba(245,221,94,.14);border:1px solid rgba(245,221,94,.45);border-radius:999px;
+  padding:6px 14px;font-weight:700;font-size:13.5px;letter-spacing:.06em;color:var(--yellow)}
 .hero-desc{margin-top:18px;font-size:16px;line-height:1.65;max-width:460px;color:rgba(251,246,234,.85)}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
 .hero-stats{display:flex;gap:28px;margin-top:36px;flex-wrap:wrap;align-items:center}
