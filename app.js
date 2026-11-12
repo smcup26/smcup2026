@@ -90,6 +90,19 @@ if (form) {
   });
 }
 
+
+// ---------- wasit: tampilkan pilihan jumlah ----------
+const refYa = document.getElementById('ref-ya');
+const refOpts = document.getElementById('ref-opts');
+if (refYa && refOpts) {
+  refYa.addEventListener('change', () => {
+    refOpts.hidden = !refYa.checked;
+    if (!refYa.checked) {
+      refOpts.querySelectorAll('input[type=radio]').forEach(r => r.checked = false);
+    }
+  });
+}
+
 function showErr(msg) {
   const box = document.getElementById('form-err');
   if (!box) return;
@@ -112,6 +125,11 @@ function validate() {
   if (!pk) { showErr('Angkatan PK wajib diisi.'); return false; }
   if (!kats.length) { showErr('Pilih minimal satu kategori.'); return false; }
   if (kats.length > 2) { showErr('Maksimal dua kategori per peserta.'); return false; }
+  const jadiWasit = document.getElementById('ref-ya') && document.getElementById('ref-ya').checked;
+  if (jadiWasit) {
+    const jml = document.querySelector('input[name="wasit_jumlah"]:checked');
+    if (!jml) { showErr('Pilih jumlah pertandingan yang siap Anda awasi, atau lepas centang kesediaan wasit.'); return false; }
+  }
   if (!setuju) { showErr('Centang persetujuan syarat & ketentuan terlebih dahulu.'); return false; }
   return true;
 }

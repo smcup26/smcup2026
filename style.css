@@ -260,6 +260,23 @@ h2 .y{color:var(--hot)}
   border-radius:12px;padding:14px 10px;margin:16px auto;max-width:280px}
 .success .btn{margin-top:10px}
 
+
+/* ---------- kotak wasit ---------- */
+.ref-box{background:rgba(26,73,115,.05);border:1.5px dashed rgba(26,73,115,.35);border-radius:12px;
+  padding:16px 16px 12px;margin-bottom:20px}
+.ref-title{font-family:'Display';font-size:17px;color:var(--navy);margin-bottom:8px}
+.ref-desc{font-weight:600;font-size:13.5px;line-height:1.55;opacity:.85;margin-bottom:14px}
+.ref-check{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:14px;cursor:pointer}
+.ref-check input{accent-color:var(--navy);width:18px;height:18px}
+.ref-opts{margin-top:14px;display:flex;flex-wrap:wrap;gap:9px}
+.ref-opts[hidden]{display:none}
+.ref-box label{text-transform:none;letter-spacing:normal;font-size:14px;font-weight:700}
+.ref-box .ref-check span{text-transform:none;letter-spacing:normal;font-size:14px}
+.ref-box .radio{flex:1 0 100%;display:inline-flex;align-items:center;gap:9px;padding:11px 14px}
+.ref-box .radio span{text-transform:none;letter-spacing:normal;font-size:13.5px;font-weight:600}
+.ref-opts-lbl{flex:1 0 100%;font-weight:700;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  opacity:.6;margin-bottom:2px}
+
 /* ---------- footer ---------- */
 .site-foot{background:var(--navy-d);color:var(--cream);padding:36px 0 22px}
 .foot-in{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}

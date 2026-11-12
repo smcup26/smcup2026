@@ -36,6 +36,8 @@ function doPost(e) {
   const status = clean(p.status) || 'Awardee Aktif';
   const kats = [clean(p.kat1), clean(p.kat2), clean(p.kat3)].filter(Boolean);
   const catatan = clean(p.catatan);
+  const jadiWasit = /ya/i.test(clean(p.wasit));
+  const wasitJumlah = clean(p.wasit_jumlah);
 
   // ---- validasi ----
   if (!nama) return page('Nama lengkap wajib diisi.', false);
@@ -47,6 +49,10 @@ function doPost(e) {
   if (kats.length > 2) return page('Maksimal dua kategori per peserta.', false);
   for (const k of kats) {
     if (!KUOTA[k]) return page('Kategori tidak dikenal: ' + k, false);
+  }
+
+  if (jadiWasit && !/^(2|4)$/.test(wasitJumlah)) {
+    return page('Pilih jumlah pertandingan yang siap Anda awasi (2 atau 4), atau lepas centang kesediaan wasit.', false);
   }
 
   const sheet = getSheet();
@@ -89,7 +95,9 @@ function doPost(e) {
     nominal,
     hasilPerKat.every(h => h.status === 'TERDAFTAR') ? 'MENUNGGU' : 'PERLU DIBAHAS',
     catatan || '',
-    ringkas
+    ringkas,
+    jadiWasit ? 'Ya' : 'Tidak',
+    jadiWasit ? wasitJumlah : ''
   ]);
 
   // ---- halaman hasil ----
@@ -131,7 +139,7 @@ function getSheet() {
   if (!sh) sh = ss.insertSheet(SHEET_NAME);
   if (sh.getLastRow() === 0) {
     sh.appendRow(['Waktu','Kode','Nama','No WA','Angkatan PK','Status',
-                  'Kategori 1','Kategori 2','Nominal','Status Bayar','Catatan','Ringkasan Kategori']);
+                  'Kategori 1','Kategori 2','Nominal','Status Bayar','Catatan','Ringkasan Kategori','Wasit','Jumlah Wasit']);
   }
   return sh;
 }
