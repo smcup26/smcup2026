@@ -12,7 +12,8 @@
  */
 
 // ---------- PENGATURAN ----------
-const SHEET_ID  = 'https://docs.google.com/spreadsheets/d/1kwkPPWZleL0zDvCq3FUHBNSHahX0OAWeNzWTdGvPZts/edit?usp=sharing';   // <- wajib diisi
+// Boleh diisi ID saja, atau tempel URL lengkap spreadsheet — akan diambil otomatis.
+const SHEET_ID  = '1kwkPPWZleL0zDvCq3FUHBNSHahX0OAWeNzWTdGvPZts';
 const SHEET_NAME = 'Pendaftaran';
 
 const FEE_AKTIF  = 45000;
@@ -133,8 +134,15 @@ function doGet() {
 }
 
 // ---------- helper ----------
+// Ambil ID spreadsheet dari teks apa pun (ID murni atau URL lengkap)
+function resolveSheetId(raw) {
+  const t = String(raw || '').trim();
+  const m = t.match(/\/d\/([a-zA-Z0-9_-]{20,})/);
+  return m ? m[1] : t;
+}
+
 function getSheet() {
-  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const ss = SpreadsheetApp.openById(resolveSheetId(SHEET_ID));
   let sh = ss.getSheetByName(SHEET_NAME);
   if (!sh) sh = ss.insertSheet(SHEET_NAME);
   if (sh.getLastRow() === 0) {
