@@ -14,7 +14,7 @@ Halaman: **https://smcup26.github.io/smcup2026/**
 3. Di baris pertama, isi header ini (persis):
 
 ```
-Waktu | Kode | Nama | No WA | Angkatan PK | Status | Kategori 1 | Kategori 2 | Nominal | Status Bayar | Catatan | Ringkasan Kategori | Wasit | Jumlah Wasit | Jenis Kelamin
+Waktu | Kode | Nama | No WA | Angkatan PK | Status | Kategori 1 | Kategori 2 | Nominal | Status Bayar | Catatan | Ringkasan Kategori | Wasit | Jumlah Wasit | Jenis Kelamin | Program Studi
 ```
 
 4. Kosongkan baris-baris berikutnya.

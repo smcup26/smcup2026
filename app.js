@@ -144,6 +144,7 @@ function validate() {
   const nama = document.getElementById('f-nama').value.trim();
   const wa = document.getElementById('f-wa').value.replace(/\D/g, '');
   const pk = document.getElementById('f-pk').value.trim();
+  const prodi = document.getElementById('f-prodi').value.trim();
   const kats = [...document.querySelectorAll('input[name^="kat"]:checked')].map(c => c.value);
   const setuju = document.getElementById('f-setuju').checked;
 
@@ -152,6 +153,7 @@ function validate() {
     showErr('Nomor WhatsApp tidak valid. Gunakan format 08xxxxxxxxxx.'); return false;
   }
   if (!pk) { showErr('Angkatan PK wajib diisi.'); return false; }
+  if (!prodi) { showErr('Program studi wajib diisi.'); return false; }
   if (!kats.length) { showErr('Pilih minimal satu kategori.'); return false; }
   if (kats.length > 2) { showErr('Maksimal dua kategori per peserta.'); return false; }
   const gender = document.querySelector('input[name="gender"]:checked');

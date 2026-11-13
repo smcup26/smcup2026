@@ -37,6 +37,7 @@ function doPost(e) {
   const status = clean(p.status) || 'Awardee Aktif';
   const kats = [clean(p.kat1), clean(p.kat2), clean(p.kat3)].filter(Boolean);
   const catatan = clean(p.catatan);
+  const prodi = clean(p.prodi) || clean(p.program_studi);
   const gender = clean(p.gender) || clean(p.jenis_kelamin);
   const jadiWasit = /ya/i.test(clean(p.wasit));
   const wasitJumlah = clean(p.wasit_jumlah);
@@ -53,6 +54,7 @@ function doPost(e) {
     if (!KUOTA[k]) return page('Kategori tidak dikenal: ' + k, false);
   }
 
+  if (!prodi) return page('Program studi wajib diisi.', false);
   if (!/^(Laki-laki|Perempuan)$/.test(gender)) {
     return page('Jenis kelamin wajib dipilih (Laki-laki atau Perempuan).', false);
   }
@@ -125,7 +127,8 @@ function doPost(e) {
     ringkas,
     jadiWasit ? 'Ya' : 'Tidak',
     jadiWasit ? wasitJumlah : '',
-    gender
+    gender,
+    prodi
   ]);
 
   // ---- halaman hasil ----
@@ -184,7 +187,7 @@ function getSheet() {
   if (!sh) sh = ss.insertSheet(SHEET_NAME);
   if (sh.getLastRow() === 0) {
     sh.appendRow(['Waktu','Kode','Nama','No WA','Angkatan PK','Status',
-                  'Kategori 1','Kategori 2','Nominal','Status Bayar','Catatan','Ringkasan Kategori','Wasit','Jumlah Wasit','Jenis Kelamin']);
+                  'Kategori 1','Kategori 2','Nominal','Status Bayar','Catatan','Ringkasan Kategori','Wasit','Jumlah Wasit','Jenis Kelamin','Program Studi']);
   }
   return sh;
 }
