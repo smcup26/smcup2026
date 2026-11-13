@@ -150,8 +150,18 @@ function doPost(e) {
   );
 }
 
-// kalau dibuka langsung di browser
-function doGet() {
+// GET: ?action=kuota -> JSON rekap kuota (untuk counter website)
+//      tanpa parameter -> halaman biasa
+function doGet(e) {
+  const action = (e && e.parameter && e.parameter.action) || '';
+
+  if (action === 'kuota') {
+    const counts = hitungKuota(getSheet());
+    return ContentService
+      .createTextOutput(JSON.stringify(counts))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+
   return page(
     '<h2>Formulir Pendaftaran</h2>' +
     '<p class="txt">Halaman ini adalah backend formulir. Silakan kembali ke website lalu isi formulirnya.</p>' +
@@ -189,6 +199,8 @@ function hitungKuota(sheet) {
     const status = String(r[0] || '');
     const isAlumni = /alumni/i.test(status);
     const gender = String(r[9] || ''); // kolom O
+    const bayar = String(r[4] || ''); // kolom J
+    if (/batal/i.test(bayar)) continue;   // baris yang dibatalkan tidak dihitung
     for (const kat of [String(r[1] || ''), String(r[2] || '')]) {
       if (out[kat]) {
         out[kat].total++;

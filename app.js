@@ -203,12 +203,25 @@ const KAT_MAP = {
 };
 
 async function loadQuota() {
-  let data;
-  try {
-    const res = await fetch('kuota.json', { cache: 'no-cache' });
-    if (!res.ok) return;
-    data = await res.json();
-  } catch (_) { return; }
+  let data = null;
+
+  // 1) coba ambil langsung dari Google Sheets (otomatis, tanpa edit manual)
+  if (CONFIG.APPS_SCRIPT_URL) {
+    try {
+      const res = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=kuota&t=' + Date.now(), { cache: 'no-store' });
+      if (res.ok) data = await res.json();
+    } catch (_) { /* lanjut ke cadangan */ }
+  }
+
+  // 2) cadangan: file statis kuota.json
+  if (!data) {
+    try {
+      const res = await fetch('kuota.json?t=' + Date.now(), { cache: 'no-store' });
+      if (res.ok) data = await res.json();
+    } catch (_) { return; }
+  }
+
+  if (!data) return;
 
   for (const [kat, ids] of Object.entries(KAT_MAP)) {
     const q = CONFIG.KUOTA[kat];
