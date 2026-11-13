@@ -103,6 +103,35 @@ if (refYa && refOpts) {
   });
 }
 
+
+// ---------- kategori menyesuaikan jenis kelamin ----------
+function terapkanGender() {
+  const row = document.getElementById('kat-row');
+  const hint = document.getElementById('kat-hint');
+  if (!row) return;
+  const g = document.querySelector('input[name="gender"]:checked');
+  const nilai = g ? g.value : '';
+  row.querySelectorAll('.check').forEach(el => {
+    const izin = el.dataset.gender;
+    const boleh = !nilai || izin === 'semua' || izin === nilai;
+    el.hidden = !boleh;
+    if (!boleh) {
+      const cb = el.querySelector('input');
+      if (cb) cb.checked = false;
+    }
+  });
+  if (hint) {
+    if (!nilai) hint.textContent = 'Pilih jenis kelamin dulu untuk melihat kategori yang tersedia.';
+    else if (nilai === 'Laki-laki') hint.textContent = 'Kategori tersedia: Ganda Putra dan Ganda Campuran.';
+    else hint.textContent = 'Kategori tersedia: Ganda Putri dan Ganda Campuran.';
+  }
+}
+
+document.querySelectorAll('input[name="gender"]').forEach(r => {
+  r.addEventListener('change', terapkanGender);
+});
+terapkanGender();
+
 function showErr(msg) {
   const box = document.getElementById('form-err');
   if (!box) return;
@@ -125,6 +154,14 @@ function validate() {
   if (!pk) { showErr('Angkatan PK wajib diisi.'); return false; }
   if (!kats.length) { showErr('Pilih minimal satu kategori.'); return false; }
   if (kats.length > 2) { showErr('Maksimal dua kategori per peserta.'); return false; }
+  const gender = document.querySelector('input[name="gender"]:checked');
+  if (!gender) { showErr('Pilih jenis kelamin terlebih dahulu.'); return false; }
+  if (gender.value === 'Laki-laki' && kats.includes('GANDA PUTRI')) {
+    showErr('Ganda Putri hanya untuk peserta perempuan.'); return false;
+  }
+  if (gender.value === 'Perempuan' && kats.includes('GANDA PUTRA')) {
+    showErr('Ganda Putra hanya untuk peserta laki-laki.'); return false;
+  }
   const jadiWasit = document.getElementById('ref-ya') && document.getElementById('ref-ya').checked;
   if (jadiWasit) {
     const jml = document.querySelector('input[name="wasit_jumlah"]:checked');
@@ -187,6 +224,18 @@ async function loadQuota() {
     if (sisaEl) sisaEl.textContent = 'Sisa slot: ' + sisa + (sisa === 0 ? ' (penuh)' : '');
     const alEl = document.getElementById(ids[2]);
     if (alEl) alEl.textContent = 'Alumni: ' + alumni + '/' + q.alumni_maks;
+
+    if (kat === 'GANDA CAMPURAN') {
+      const box = document.getElementById('gender-gc');
+      if (box) {
+        const p = Number(row.pria || 0);
+        const w = Number(row.wanita || 0);
+        const pMax = q.pria || 10;
+        const wMax = q.wanita || 10;
+        box.textContent = 'Pria ' + p + '/' + pMax + ' · Wanita ' + w + '/' + wMax;
+        box.classList.toggle('full', p >= pMax && w >= wMax);
+      }
+    }
   }
 }
 loadQuota();

@@ -37,6 +37,7 @@ function doPost(e) {
   const status = clean(p.status) || 'Awardee Aktif';
   const kats = [clean(p.kat1), clean(p.kat2), clean(p.kat3)].filter(Boolean);
   const catatan = clean(p.catatan);
+  const gender = clean(p.gender) || clean(p.jenis_kelamin);
   const jadiWasit = /ya/i.test(clean(p.wasit));
   const wasitJumlah = clean(p.wasit_jumlah);
 
@@ -50,6 +51,18 @@ function doPost(e) {
   if (kats.length > 2) return page('Maksimal dua kategori per peserta.', false);
   for (const k of kats) {
     if (!KUOTA[k]) return page('Kategori tidak dikenal: ' + k, false);
+  }
+
+  if (!/^(Laki-laki|Perempuan)$/.test(gender)) {
+    return page('Jenis kelamin wajib dipilih (Laki-laki atau Perempuan).', false);
+  }
+  for (const k of kats) {
+    if (k === 'GANDA PUTRA' && gender !== 'Laki-laki') {
+      return page('Kategori Ganda Putra hanya untuk peserta laki-laki.', false);
+    }
+    if (k === 'GANDA PUTRI' && gender !== 'Perempuan') {
+      return page('Kategori Ganda Putri hanya untuk peserta perempuan.', false);
+    }
   }
 
   if (jadiWasit && !/^(2|4)$/.test(wasitJumlah)) {
@@ -75,6 +88,19 @@ function doPost(e) {
     hasilPerKat.push({ kat: kat, status: st });
   }
 
+  // ---- kuota Ganda Campuran per jenis kelamin (10 pria / 10 wanita) ----
+  if (kats.indexOf('GANDA CAMPURAN') >= 0) {
+    const gc = counts['GANDA CAMPURAN'];
+    if (gender === 'Laki-laki' && gc.pria >= 10) {
+      return page('Kuota pria Ganda Campuran sudah penuh (' + gc.pria + '/10). ' +
+        'Silakan pilih kategori lain atau hubungi narahubung.', false);
+    }
+    if (gender === 'Perempuan' && gc.wanita >= 10) {
+      return page('Kuota wanita Ganda Campuran sudah penuh (' + gc.wanita + '/10). ' +
+        'Silakan pilih kategori lain atau hubungi narahubung.', false);
+    }
+  }
+
   // ---- kode pendaftaran ----
   const rowNum = sheet.getLastRow() + 1;
   const kode = 'SMC-' + String(rowNum - 1).padStart(4, '0');
@@ -98,7 +124,8 @@ function doPost(e) {
     catatan || '',
     ringkas,
     jadiWasit ? 'Ya' : 'Tidak',
-    jadiWasit ? wasitJumlah : ''
+    jadiWasit ? wasitJumlah : '',
+    gender
   ]);
 
   // ---- halaman hasil ----
@@ -147,24 +174,27 @@ function getSheet() {
   if (!sh) sh = ss.insertSheet(SHEET_NAME);
   if (sh.getLastRow() === 0) {
     sh.appendRow(['Waktu','Kode','Nama','No WA','Angkatan PK','Status',
-                  'Kategori 1','Kategori 2','Nominal','Status Bayar','Catatan','Ringkasan Kategori','Wasit','Jumlah Wasit']);
+                  'Kategori 1','Kategori 2','Nominal','Status Bayar','Catatan','Ringkasan Kategori','Wasit','Jumlah Wasit','Jenis Kelamin']);
   }
   return sh;
 }
 
 function hitungKuota(sheet) {
   const out = {};
-  for (const k in KUOTA) out[k] = { total: 0, alumni: 0 };
+  for (const k in KUOTA) out[k] = { total: 0, alumni: 0, pria: 0, wanita: 0 };
   const last = sheet.getLastRow();
   if (last < 2) return out;
-  const rows = sheet.getRange(2, 6, last - 1, 3).getValues(); // kolom F(status), G, H
+  const rows = sheet.getRange(2, 6, last - 1, 10).getValues(); // kolom F..O
   for (const r of rows) {
     const status = String(r[0] || '');
     const isAlumni = /alumni/i.test(status);
+    const gender = String(r[9] || ''); // kolom O
     for (const kat of [String(r[1] || ''), String(r[2] || '')]) {
       if (out[kat]) {
         out[kat].total++;
         if (isAlumni) out[kat].alumni++;
+        if (/laki/i.test(gender)) out[kat].pria++;
+        else if (/perempuan|wanita/i.test(gender)) out[kat].wanita++;
       }
     }
   }

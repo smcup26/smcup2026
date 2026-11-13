@@ -126,6 +126,10 @@ h2 .y{color:var(--hot)}
 .bar i{display:block;height:100%;background:var(--hot);border-radius:6px;transition:width .6s}
 .cat-info{display:flex;justify-content:space-between;margin-top:10px;font-weight:700;font-size:12px;color:var(--navy)}
 .cat-info span:last-child{opacity:.65}
+.cat-gender{margin-top:10px;padding-top:10px;border-top:1px dashed rgba(26,73,115,.2);
+  font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--navy);opacity:.85}
+.cat-gender.full{color:#C41B1B}
+.check[hidden]{display:none}
 .cat.full .bar i{background:#C41B1B}
 .cat.full .cat-num{color:#C41B1B}
 .note-line{margin-top:24px;background:var(--white);border-left:5px solid var(--hot);border-radius:10px;

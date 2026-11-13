@@ -147,6 +147,7 @@
         <div class="cat-lbl">PERSON · 10 TIM</div>
         <div class="bar"><i id="bar-gc" style="width:0%"></i></div>
         <div class="cat-info"><span id="sisa-gc">Sisa slot: —</span><span id="alumni-gc">Alumni: —</span></div>
+        <div class="cat-gender" id="gender-gc">Pria — · Wanita —</div>
       </article>
     </div>
     <div class="note-line">
@@ -406,12 +407,22 @@
         </div>
 
         <div class="field">
-          <label>Kategori (maksimal 2)</label>
-          <div class="check-row">
-            <label class="check"><input type="checkbox" name="kat1" value="GANDA PUTRA"><span>Ganda Putra</span></label>
-            <label class="check"><input type="checkbox" name="kat2" value="GANDA PUTRI"><span>Ganda Putri</span></label>
-            <label class="check"><input type="checkbox" name="kat3" value="GANDA CAMPURAN"><span>Ganda Campuran</span></label>
+          <label>Jenis Kelamin</label>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="gender" value="Laki-laki"><span>Laki-laki</span></label>
+            <label class="radio"><input type="radio" name="gender" value="Perempuan"><span>Perempuan</span></label>
           </div>
+          <div class="hint">Menentukan kategori yang bisa dipilih.</div>
+        </div>
+
+        <div class="field">
+          <label>Kategori (maksimal 2)</label>
+          <div class="check-row" id="kat-row">
+            <label class="check" data-gender="Laki-laki"><input type="checkbox" name="kat1" value="GANDA PUTRA"><span>Ganda Putra</span></label>
+            <label class="check" data-gender="Perempuan"><input type="checkbox" name="kat2" value="GANDA PUTRI"><span>Ganda Putri</span></label>
+            <label class="check" data-gender="semua"><input type="checkbox" name="kat3" value="GANDA CAMPURAN"><span>Ganda Campuran</span></label>
+          </div>
+          <div class="hint" id="kat-hint">Pilih jenis kelamin dulu untuk melihat kategori yang tersedia.</div>
         </div>
 
         <div class="field ref-box">

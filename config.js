@@ -27,7 +27,7 @@ const CONFIG = {
   KUOTA: {
     'GANDA PUTRA':     { total: 40, alumni_maks: 12 },
     'GANDA PUTRI':     { total: 20, alumni_maks: 6 },
-    'GANDA CAMPURAN':  { total: 20, alumni_maks: 6 }
+    'GANDA CAMPURAN':  { total: 20, alumni_maks: 6, pria: 10, wanita: 10 }
   }
 };
 

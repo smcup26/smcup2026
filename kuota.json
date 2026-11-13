@@ -1,5 +1,16 @@
 {
-  "GANDA PUTRA":    { "terdaftar": 0, "alumni": 0 },
-  "GANDA PUTRI":    { "terdaftar": 0, "alumni": 0 },
-  "GANDA CAMPURAN": { "terdaftar": 0, "alumni": 0 }
+  "GANDA PUTRA": {
+    "terdaftar": 0,
+    "alumni": 0
+  },
+  "GANDA PUTRI": {
+    "terdaftar": 0,
+    "alumni": 0
+  },
+  "GANDA CAMPURAN": {
+    "terdaftar": 0,
+    "alumni": 0,
+    "pria": 0,
+    "wanita": 0
+  }
 }
