@@ -286,7 +286,7 @@ h2 .y{color:var(--hot)}
 .mitra-row{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-top:32px}
 .mitra{background:var(--white);border-radius:14px;padding:22px 30px;display:flex;
   align-items:center;justify-content:center;min-height:120px}
-.mitra img{max-height:96px;width:auto;display:block}
+.mitra img{max-height:96px;max-width:100%;width:auto;display:block}
 .mitra.mitra-dark{background:transparent;padding:0}
 .mitra.mitra-dark img{max-height:150px}
 @media (max-width:640px){
