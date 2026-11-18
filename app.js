@@ -227,8 +227,16 @@ const KAT_MAP = {
 async function loadQuota() {
   let data = null;
 
-  // 1) coba ambil langsung dari Google Sheets (otomatis, tanpa edit manual)
-  if (CONFIG.APPS_SCRIPT_URL) {
+  // 1) baca langsung dari Google Sheets (CSV publik, paling akurat)
+  if (typeof ambilPendaftaran === 'function') {
+    try {
+      const rows = await ambilPendaftaran();
+      data = hitungKuotaDariBaris(rows);
+    } catch (_) { /* lanjut ke sumber berikutnya */ }
+  }
+
+  // 2) endpoint Apps Script
+  if (!data && CONFIG.APPS_SCRIPT_URL) {
     try {
       const res = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=kuota&t=' + Date.now(), { cache: 'no-store' });
       if (res.ok) data = await res.json();

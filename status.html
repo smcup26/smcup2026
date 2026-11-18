@@ -92,7 +92,7 @@
   <div class="cek-foot">KELURAHAN LPDP UGM · DIVISI MINAT DAN BAKAT</div>
 </div>
 
-<script src="config.js?v=2"></script>
+<script src="data.js?v=2"></script>
 <script>
 (function(){
   var f=document.getElementById('cek-form'),
@@ -119,31 +119,33 @@
       out.innerHTML='<div class="cek-err">Lengkapi kode dan 4 digit WhatsApp.</div>';
       return;
     }
-    if(!CONFIG.APPS_SCRIPT_URL){
-      out.innerHTML='<div class="cek-err">Layanan pengecekan belum tersedia. Hubungi narahubung.</div>';
-      return;
-    }
     btn.disabled=true; btn.textContent='Mencari...';
-    var url=CONFIG.APPS_SCRIPT_URL+'?action=status&kode='+encodeURIComponent(kode)+'&wa4='+wa4+'&t='+Date.now();
-    fetch(url,{cache:'no-store'})
-      .then(function(r){return r.json();})
-      .then(function(d){
-        if(!d.ok){
-          out.innerHTML='<div class="cek-err">'+esc(d.pesan||'Data tidak ditemukan.')+'</div>';
-          return;
-        }
-        var kats=(d.kategori||[]).map(function(k){return '<span class="cek-kat">'+esc(k)+'</span>';}).join('');
-        out.innerHTML='<div class="cek-result">'+
-          '<div class="nm">'+esc(d.nama)+'</div>'+
-          '<div class="cek-row"><span>KODE</span><div>'+esc(d.kode)+'</div></div>'+
-          '<div class="cek-row"><span>KATEGORI</span><div class="cek-kats">'+(kats||'-')+'</div></div>'+
-          '<div class="cek-row"><span>STATUS BAYAR</span><div>'+badge(d.statusBayar)+'</div></div>'+
-        '</div>';
-      })
-      .catch(function(){
-        out.innerHTML='<div class="cek-err">Gagal menghubungi server. Coba lagi atau hubungi narahubung.</div>';
-      })
-      .then(function(){btn.disabled=false; btn.textContent='Cek Status';});
+
+    ambilPendaftaran().then(function(rows){
+      var data=null;
+      for(var i=0;i<rows.length;i++){
+        if(String(rows[i]['Kode']||'').trim().toUpperCase()===kode){ data=rows[i]; break; }
+      }
+      if(!data){
+        out.innerHTML='<div class="cek-err">Kode pendaftaran tidak ditemukan.</div>';
+        return;
+      }
+      var waRow=String(data['No WA']||'').replace(/\D/g,'');
+      if(waRow.slice(-4)!==wa4){
+        out.innerHTML='<div class="cek-err">4 digit nomor WhatsApp tidak cocok.</div>';
+        return;
+      }
+      var kats=[data['Kategori 1'],data['Kategori 2']].filter(function(k){return !!k;});
+      var katHtml=kats.map(function(k){return '<span class="cek-kat">'+esc(k)+'</span>';}).join('');
+      out.innerHTML='<div class="cek-result">'+
+        '<div class="nm">'+esc(data['Nama'])+'</div>'+
+        '<div class="cek-row"><span>KODE</span><div>'+esc(kode)+'</div></div>'+
+        '<div class="cek-row"><span>KATEGORI</span><div class="cek-kats">'+(katHtml||'-')+'</div></div>'+
+        '<div class="cek-row"><span>STATUS BAYAR</span><div>'+badge(data['Status Bayar'])+'</div></div>'+
+      '</div>';
+    }).catch(function(err){
+      out.innerHTML='<div class="cek-err">Gagal mengambil data: '+esc(err.message||'coba lagi')+'</div>';
+    }).then(function(){btn.disabled=false; btn.textContent='Cek Status';});
   });
 })();
 </script>
