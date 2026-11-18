@@ -17,7 +17,9 @@ const SHEET_ID  = '1kwkPPWZleL0zDvCq3FUHBNSHahX0OAWeNzWTdGvPZts';
 const SHEET_NAME = 'Pendaftaran';
 
 const FEE_AKTIF  = 45000;
-const FEE_ALUMNI = 65000;
+const FEE_ALUMNI = 55000;
+const QRIS_URL = 'https://smcup26.github.io/smcup2026/assets/qris.png';
+const REK_BANK  = 'Mandiri · 1030012388753 · a.n. RAHMANIAH ZAINUDDIN';
 
 const KUOTA = {
   'GANDA PUTRA':    { total: 40, alumni_maks: 12 },
@@ -108,7 +110,8 @@ function doPost(e) {
   const kode = 'SMC-' + String(rowNum - 1).padStart(4, '0');
 
   // ---- nominal ----
-  const nominal = isAlumni ? FEE_ALUMNI : FEE_AKTIF;
+  const tarif   = isAlumni ? FEE_ALUMNI : FEE_AKTIF;
+  const nominal = tarif * kats.length;
 
   // ---- tulis ke sheet (satu baris per peserta) ----
   const ringkas = hasilPerKat.map(h => h.kat + ' (' + h.status + ')').join('; ');
@@ -136,17 +139,26 @@ function doPost(e) {
   const pesanWa =
     'Halo ' + WA_NAME + ', saya ' + nama + ' (' + kode + ').\n' +
     'Pendaftaran ' + kats.join(' + ') + ' sudah saya kirim.\n' +
-    'Berikut bukti transfer ' + rupiah(nominal) + 'nya.';
+    'Pembayaran saya lakukan via QRIS / transfer bank.\n' +
+    'Berikut bukti transfer ' + rupiah(nominal) + (kats.length > 1 ? ' (' + kats.length + ' x ' + rupiah(tarif) + ')' : '') + 'nya.';
   const waUrl = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(pesanWa);
 
   return page(
     '<div class="kode">' + kode + '</div>' +
     '<p class="txt">Nama: <b>' + esc(nama) + '</b><br>' +
     'Kategori: <b>' + esc(kats.join(', ')) + '</b><br>' +
-    'Nominal transfer: <b>' + rupiah(nominal) + '</b></p>' +
+    'Nominal transfer: <b>' + rupiah(nominal) + '</b>' +
+    (kats.length > 1 ? ' <span class="small">(' + kats.length + ' x ' + rupiah(tarif) + ')</span>' : '') + '</p>' +
+    '<div class="pay">' +
+      '<div class="pay-t">BAYAR VIA QRIS</div>' +
+      '<img class="qris" src="' + QRIS_URL + '" alt="QRIS pendaftaran SM CUP 2026">' +
+      '<div class="pay-nom">' + rupiah(nominal) + '</div>' +
+      '<div class="pay-lbl">Jumlah yang harus dibayarkan</div>' +
+      '<div class="pay-bank"><b>Atau transfer bank</b><br>' + REK_BANK + '</div>' +
+    '</div>' +
     (semuaTerdaftar
-      ? '<p class="txt ok">Slot kamu aman. Silakan transfer lalu konfirmasi.</p>'
-      : '<p class="txt warn">Satu atau lebih kategorimu masuk <b>daftar tunggu</b>. Panitia akan menghubungimu.</p>') +
+      ? '<p class="txt ok">Slot kamu aman. Silakan bayar lalu kirim bukti lewat WhatsApp.</p>'
+      : '<p class="txt warn">Satu atau lebih kategorimu masuk <b>daftar tunggu</b>. Tunggu konfirmasi panitia sebelum membayar.</p>') +
     '<a class="btn" href="' + waUrl + '" target="_blank">Konfirmasi via WhatsApp</a>' +
     '<p class="small">Simpan kode pendaftaran ini. Panitia akan mencocokkannya dengan transfermu.</p>',
     true
@@ -236,8 +248,15 @@ function page(inner, ok) {
     .kode{font-size:34px;font-weight:900;letter-spacing:.06em;background:#1A4973;color:#F5DD5E;
       border-radius:12px;padding:14px 10px;margin:18px auto;max-width:280px}
     .txt{font-size:15px;line-height:1.65;margin-top:12px;opacity:.9}
-    .ok{color:#2E7D32}.warn{color:#B06000}
+    .txt.ok{color:#2E7D32}.txt.warn{color:#B06000}
     .small{font-size:12.5px;opacity:.65;margin-top:16px;line-height:1.5}
+    .pay{margin:18px 0 4px;border:1.5px solid #1A4973;border-radius:14px;padding:16px}
+    .pay-t{font-weight:800;font-size:12px;letter-spacing:.18em;opacity:.6}
+    .qris{width:210px;max-width:100%;display:block;margin:12px auto 8px;border-radius:8px}
+    .pay-nom{font-size:26px;font-weight:900;color:#1A4973}
+    .pay-lbl{font-size:12px;opacity:.6;margin-top:2px}
+    .pay-bank{margin-top:14px;padding-top:12px;border-top:1px solid rgba(26,73,115,.15);
+      font-size:13px;line-height:1.6}
     .btn{display:inline-block;background:#FFD200;color:#1A4973;font-weight:700;font-size:15px;
       padding:14px 26px;border-radius:10px;text-decoration:none;margin-top:20px}
   </style></head>
