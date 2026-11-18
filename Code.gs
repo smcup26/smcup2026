@@ -12,7 +12,8 @@
  */
 
 // ---------- PENGATURAN ----------
-const SHEET_ID  = 'https://docs.google.com/spreadsheets/d/1kwkPPWZleL0zDvCq3FUHBNSHahX0OAWeNzWTdGvPZts/edit?usp=sharing';   // <- wajib diisi
+// Boleh diisi ID saja, atau tempel URL lengkap spreadsheet — akan diambil otomatis.
+const SHEET_ID  = '1kwkPPWZleL0zDvCq3FUHBNSHahX0OAWeNzWTdGvPZts';
 const SHEET_NAME = 'Pendaftaran';
 
 const FEE_AKTIF  = 45000;
@@ -21,9 +22,9 @@ const QRIS_URL = 'https://smcup26.github.io/smcup2026/assets/qris.png';
 const REK_BANK  = 'Mandiri · 1030012388753 · a.n. RAHMANIAH ZAINUDDIN';
 
 const KUOTA = {
-  'GANDA PUTRA':    { total: 40, alumni_maks: 16 },
-  'GANDA PUTRI':    { total: 20, alumni_maks: 10 },
-  'GANDA CAMPURAN': { total: 20, alumni_maks: 10 }
+  'GANDA PUTRA':    { total: 40, alumni_maks: 12 },
+  'GANDA PUTRI':    { total: 20, alumni_maks: 6 },
+  'GANDA CAMPURAN': { total: 20, alumni_maks: 6 }
 };
 
 const WA_NUMBER = '6285298936023';   // nomor narahubung (format internasional)
@@ -38,6 +39,10 @@ function doPost(e) {
   const status = clean(p.status) || 'Awardee Aktif';
   const kats = [clean(p.kat1), clean(p.kat2), clean(p.kat3)].filter(Boolean);
   const catatan = clean(p.catatan);
+  const prodi = clean(p.prodi) || clean(p.program_studi);
+  const gender = clean(p.gender) || clean(p.jenis_kelamin);
+  const jadiWasit = /ya/i.test(clean(p.wasit));
+  const wasitJumlah = clean(p.wasit_jumlah);
 
   // ---- validasi ----
   if (!nama) return page('Nama lengkap wajib diisi.', false);
@@ -49,6 +54,23 @@ function doPost(e) {
   if (kats.length > 2) return page('Maksimal dua kategori per peserta.', false);
   for (const k of kats) {
     if (!KUOTA[k]) return page('Kategori tidak dikenal: ' + k, false);
+  }
+
+  if (!prodi) return page('Program studi wajib diisi.', false);
+  if (!/^(Laki-laki|Perempuan)$/.test(gender)) {
+    return page('Jenis kelamin wajib dipilih (Laki-laki atau Perempuan).', false);
+  }
+  for (const k of kats) {
+    if (k === 'GANDA PUTRA' && gender !== 'Laki-laki') {
+      return page('Kategori Ganda Putra hanya untuk peserta laki-laki.', false);
+    }
+    if (k === 'GANDA PUTRI' && gender !== 'Perempuan') {
+      return page('Kategori Ganda Putri hanya untuk peserta perempuan.', false);
+    }
+  }
+
+  if (jadiWasit && !/^(2|4)$/.test(wasitJumlah)) {
+    return page('Pilih jumlah pertandingan yang siap Anda awasi (2 atau 4), atau lepas centang kesediaan wasit.', false);
   }
 
   const sheet = getSheet();
@@ -68,6 +90,19 @@ function doPost(e) {
       st = 'CADANGAN';
     }
     hasilPerKat.push({ kat: kat, status: st });
+  }
+
+  // ---- kuota Ganda Campuran per jenis kelamin (10 pria / 10 wanita) ----
+  if (kats.indexOf('GANDA CAMPURAN') >= 0) {
+    const gc = counts['GANDA CAMPURAN'];
+    if (gender === 'Laki-laki' && gc.pria >= 10) {
+      return page('Kuota pria Ganda Campuran sudah penuh (' + gc.pria + '/10). ' +
+        'Silakan pilih kategori lain atau hubungi narahubung.', false);
+    }
+    if (gender === 'Perempuan' && gc.wanita >= 10) {
+      return page('Kuota wanita Ganda Campuran sudah penuh (' + gc.wanita + '/10). ' +
+        'Silakan pilih kategori lain atau hubungi narahubung.', false);
+    }
   }
 
   // ---- kode pendaftaran ----
@@ -92,7 +127,11 @@ function doPost(e) {
     nominal,
     hasilPerKat.every(h => h.status === 'TERDAFTAR') ? 'MENUNGGU' : 'PERLU DIBAHAS',
     catatan || '',
-    ringkas
+    ringkas,
+    jadiWasit ? 'Ya' : 'Tidak',
+    jadiWasit ? wasitJumlah : '',
+    gender,
+    prodi
   ]);
 
   // ---- halaman hasil ----
@@ -126,8 +165,47 @@ function doPost(e) {
   );
 }
 
-// kalau dibuka langsung di browser
-function doGet() {
+// GET: ?action=kuota -> JSON rekap kuota (untuk counter website)
+//      tanpa parameter -> halaman biasa
+function doGet(e) {
+  const action = (e && e.parameter && e.parameter.action) || '';
+
+  if (action === 'kuota') {
+    const counts = hitungKuota(getSheet());
+    return jsonResponse(counts);
+  }
+
+  if (action === 'status') {
+    const kode = clean(e.parameter.kode).toUpperCase();
+    const wa4  = clean(e.parameter.wa4).replace(/\D/g, '');
+    if (!kode || wa4.length !== 4) {
+      return jsonResponse({ ok: false, pesan: 'Kode pendaftaran dan 4 digit WA wajib diisi.' });
+    }
+    const sh = getSheet();
+    const last = sh.getLastRow();
+    if (last < 2) return jsonResponse({ ok: false, pesan: 'Belum ada pendaftaran.' });
+
+    // kolom B..J: kode, nama, WA, PK, status peserta, kat1, kat2, nominal, status bayar
+    const rows = sh.getRange(2, 2, last - 1, 9).getValues();
+    for (const r of rows) {
+      const kodeRow = clean(r[0]).toUpperCase();
+      if (kodeRow !== kode) continue;
+      const waRow = clean(r[2]).replace(/\D/g, '');
+      if (waRow.slice(-4) !== wa4) {
+        return jsonResponse({ ok: false, pesan: '4 digit nomor WhatsApp tidak cocok.' });
+      }
+      const kats = [clean(r[5]), clean(r[6])].filter(Boolean);
+      return jsonResponse({
+        ok: true,
+        kode: kodeRow,
+        nama: clean(r[1]),
+        kategori: kats,
+        statusBayar: clean(r[8]) || 'MENUNGGU'
+      });
+    }
+    return jsonResponse({ ok: false, pesan: 'Kode pendaftaran tidak ditemukan.' });
+  }
+
   return page(
     '<h2>Formulir Pendaftaran</h2>' +
     '<p class="txt">Halaman ini adalah backend formulir. Silakan kembali ke website lalu isi formulirnya.</p>' +
@@ -137,30 +215,42 @@ function doGet() {
 }
 
 // ---------- helper ----------
+// Ambil ID spreadsheet dari teks apa pun (ID murni atau URL lengkap)
+function resolveSheetId(raw) {
+  const t = String(raw || '').trim();
+  const m = t.match(/\/d\/([a-zA-Z0-9_-]{20,})/);
+  return m ? m[1] : t;
+}
+
 function getSheet() {
-  const ss = SpreadsheetApp.openById(SHEET_ID);
+  const ss = SpreadsheetApp.openById(resolveSheetId(SHEET_ID));
   let sh = ss.getSheetByName(SHEET_NAME);
   if (!sh) sh = ss.insertSheet(SHEET_NAME);
   if (sh.getLastRow() === 0) {
     sh.appendRow(['Waktu','Kode','Nama','No WA','Angkatan PK','Status',
-                  'Kategori 1','Kategori 2','Nominal','Status Bayar','Catatan','Ringkasan Kategori']);
+                  'Kategori 1','Kategori 2','Nominal','Status Bayar','Catatan','Ringkasan Kategori','Wasit','Jumlah Wasit','Jenis Kelamin','Program Studi']);
   }
   return sh;
 }
 
 function hitungKuota(sheet) {
   const out = {};
-  for (const k in KUOTA) out[k] = { total: 0, alumni: 0 };
+  for (const k in KUOTA) out[k] = { total: 0, alumni: 0, pria: 0, wanita: 0 };
   const last = sheet.getLastRow();
   if (last < 2) return out;
-  const rows = sheet.getRange(2, 6, last - 1, 3).getValues(); // kolom F(status), G, H
+  const rows = sheet.getRange(2, 6, last - 1, 10).getValues(); // kolom F..O
   for (const r of rows) {
     const status = String(r[0] || '');
     const isAlumni = /alumni/i.test(status);
+    const gender = String(r[9] || ''); // kolom O
+    const bayar = String(r[4] || ''); // kolom J
+    if (/batal/i.test(bayar)) continue;   // baris yang dibatalkan tidak dihitung
     for (const kat of [String(r[1] || ''), String(r[2] || '')]) {
       if (out[kat]) {
         out[kat].total++;
         if (isAlumni) out[kat].alumni++;
+        if (/laki/i.test(gender)) out[kat].pria++;
+        else if (/perempuan|wanita/i.test(gender)) out[kat].wanita++;
       }
     }
   }
@@ -205,6 +295,11 @@ function page(inner, ok) {
     ${inner}
   </div></body></html>`;
   return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function jsonResponse(o) {
+  return ContentService.createTextOutput(JSON.stringify(o))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 function clean(v) { return String(v || '').trim(); }

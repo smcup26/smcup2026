@@ -172,9 +172,38 @@ function doGet(e) {
 
   if (action === 'kuota') {
     const counts = hitungKuota(getSheet());
-    return ContentService
-      .createTextOutput(JSON.stringify(counts))
-      .setMimeType(ContentService.MimeType.JSON);
+    return jsonResponse(counts);
+  }
+
+  if (action === 'status') {
+    const kode = clean(e.parameter.kode).toUpperCase();
+    const wa4  = clean(e.parameter.wa4).replace(/\D/g, '');
+    if (!kode || wa4.length !== 4) {
+      return jsonResponse({ ok: false, pesan: 'Kode pendaftaran dan 4 digit WA wajib diisi.' });
+    }
+    const sh = getSheet();
+    const last = sh.getLastRow();
+    if (last < 2) return jsonResponse({ ok: false, pesan: 'Belum ada pendaftaran.' });
+
+    // kolom B..J: kode, nama, WA, PK, status peserta, kat1, kat2, nominal, status bayar
+    const rows = sh.getRange(2, 2, last - 1, 9).getValues();
+    for (const r of rows) {
+      const kodeRow = clean(r[0]).toUpperCase();
+      if (kodeRow !== kode) continue;
+      const waRow = clean(r[2]).replace(/\D/g, '');
+      if (waRow.slice(-4) !== wa4) {
+        return jsonResponse({ ok: false, pesan: '4 digit nomor WhatsApp tidak cocok.' });
+      }
+      const kats = [clean(r[5]), clean(r[6])].filter(Boolean);
+      return jsonResponse({
+        ok: true,
+        kode: kodeRow,
+        nama: clean(r[1]),
+        kategori: kats,
+        statusBayar: clean(r[8]) || 'MENUNGGU'
+      });
+    }
+    return jsonResponse({ ok: false, pesan: 'Kode pendaftaran tidak ditemukan.' });
   }
 
   return page(
@@ -266,6 +295,11 @@ function page(inner, ok) {
     ${inner}
   </div></body></html>`;
   return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function jsonResponse(o) {
+  return ContentService.createTextOutput(JSON.stringify(o))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 function clean(v) { return String(v || '').trim(); }

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cek Status Pendaftaran — SM CUP 2026</title>
+<link rel="stylesheet" href="style.css">
+<style>
+@font-face{font-family:'Display';src:url('fonts/ArchivoBlack.ttf')}
+.cek-page{min-height:100vh;background:var(--cream);display:flex;flex-direction:column}
+.cek-head{background:#fff;border-bottom:1px solid rgba(26,73,115,.14);padding:14px 0}
+.cek-head .head-in{display:flex;align-items:center;justify-content:space-between}
+.cek-head img{height:46px}
+.cek-back{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--navy);opacity:.7}
+.cek-main{flex:1;display:flex;align-items:flex-start;justify-content:center;padding:56px 20px 70px}
+.cek-box{width:100%;max-width:520px}
+.cek-kick{font-weight:800;font-size:13px;letter-spacing:.24em;opacity:.55}
+.cek-box h1{font-family:'Display';font-size:46px;line-height:.95;margin-top:10px;letter-spacing:-.02em}
+.cek-desc{font-size:15px;line-height:1.6;opacity:.75;margin-top:14px}
+.cek-card{background:#fff;border-radius:var(--radius);padding:26px;margin-top:28px;
+  box-shadow:0 8px 24px rgba(26,73,115,.10)}
+.cek-field{margin-bottom:16px}
+.cek-field label{display:block;font-weight:700;font-size:13px;letter-spacing:.08em;margin-bottom:7px}
+.cek-field input{width:100%;border:1.5px solid rgba(26,73,115,.28);border-radius:10px;
+  padding:13px 15px;font-family:'Body',sans-serif;font-size:16px;color:var(--navy);outline:none}
+.cek-field input:focus{border-color:var(--navy)}
+.cek-field .hint{font-size:12px;opacity:.55;margin-top:5px}
+.cek-btn{width:100%;background:var(--hot);color:var(--navy);border:none;border-radius:10px;
+  padding:15px;font-family:'Body',sans-serif;font-weight:800;font-size:16px;cursor:pointer;margin-top:4px}
+.cek-btn:disabled{opacity:.6;cursor:wait}
+.cek-result{margin-top:22px;border-radius:var(--radius);padding:24px;background:#1A4973;color:#FBF6EA;
+  box-shadow:0 8px 24px rgba(26,73,115,.16)}
+.cek-result .nm{font-family:'Display';font-size:28px;color:var(--yellow);line-height:1.1}
+.cek-row{display:flex;gap:14px;padding:12px 0;border-top:1px solid rgba(251,246,234,.18);margin-top:14px;
+  font-size:15px;line-height:1.5}
+.cek-row span:first-child{width:110px;flex:none;opacity:.6;font-weight:700;font-size:13px;letter-spacing:.08em}
+.cek-kats{display:flex;flex-wrap:wrap;gap:7px}
+.cek-kat{background:rgba(245,221,94,.18);border:1px solid rgba(245,221,94,.4);color:var(--yellow);
+  border-radius:7px;padding:5px 10px;font-size:13px;font-weight:700}
+.cek-badge{display:inline-block;border-radius:7px;padding:6px 12px;font-weight:800;font-size:13px;letter-spacing:.06em}
+.cek-badge.lunas{background:#2E7D32;color:#fff}
+.cek-badge.kurang{background:#FFD200;color:#1A4973}
+.cek-badge.wait{background:rgba(251,246,234,.2);color:#FBF6EA;border:1px solid rgba(251,246,234,.35)}
+.cek-err{background:#fff5f4;border:1px solid #e6b5af;color:#a33;border-radius:12px;padding:16px;
+  font-size:14px;margin-top:18px;text-align:center}
+.cek-note{text-align:center;font-size:13px;opacity:.55;margin-top:22px;line-height:1.6}
+.cek-foot{text-align:center;font-size:12px;letter-spacing:.14em;opacity:.45;font-weight:700;padding:22px}
+@media(max-width:600px){.cek-box h1{font-size:38px}}
+</style>
+</head>
+<body>
+<div class="cek-page">
+  <div class="cek-head">
+    <div class="wrap head-in">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.png" alt="LPDP UGM Sinergi Maju">
+        <span class="brand-t">SM CUP <b>2026</b></span>
+      </a>
+      <a class="cek-back" href="index.html#daftar">← Kembali ke pendaftaran</a>
+    </div>
+  </div>
+
+  <main class="cek-main">
+    <div class="cek-box">
+      <div class="cek-kick">SM CUP 2026 · SINERGI MAJU CUP</div>
+      <h1>Cek Status<br>Pendaftaran</h1>
+      <p class="cek-desc">Masukkan kode pendaftaran dan 4 digit terakhir nomor WhatsApp yang dipakai saat mendaftar.</p>
+
+      <form class="cek-card" id="cek-form">
+        <div class="cek-field">
+          <label for="kode">Kode Pendaftaran</label>
+          <input id="kode" name="kode" placeholder="SMC-0001" autocomplete="off" required>
+          <div class="hint">Contoh: SMC-0001</div>
+        </div>
+        <div class="cek-field">
+          <label for="wa4">4 Digit Terakhir WhatsApp</label>
+          <input id="wa4" name="wa4" placeholder="1234" inputmode="numeric" maxlength="4" required>
+          <div class="hint">Tanpa spasi atau tanda baca</div>
+        </div>
+        <button class="cek-btn" type="submit" id="cek-btn">Cek Status</button>
+      </form>
+
+      <div id="cek-hasil"></div>
+
+      <div class="cek-note">
+        Data ditampilkan langsung dari pendaftaran. Kalau status belum sesuai, hubungi narahubung
+        <b>Alfin — 0852-9893-6023</b>.
+      </div>
+    </div>
+  </main>
+
+  <div class="cek-foot">KELURAHAN LPDP UGM · DIVISI MINAT DAN BAKAT</div>
+</div>
+
+<script src="config.js?v=2"></script>
+<script>
+(function(){
+  var f=document.getElementById('cek-form'),
+      btn=document.getElementById('cek-btn'),
+      out=document.getElementById('cek-hasil');
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function badge(st){
+    var s=(st||'').toUpperCase();
+    if(/LUNAS|SELESAI|OK/.test(s)) return '<span class="cek-badge lunas">'+esc(s)+'</span>';
+    if(/KURANG|BELUM|PERLU/.test(s)) return '<span class="cek-badge kurang">'+esc(s)+'</span>';
+    return '<span class="cek-badge wait">'+esc(s||'MENUNGGU')+'</span>';
+  }
+
+  if(!f) return;
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    out.innerHTML='';
+    var kode=document.getElementById('kode').value.trim().toUpperCase();
+    var wa4=document.getElementById('wa4').value.replace(/\D/g,'');
+    if(!kode||wa4.length!==4){
+      out.innerHTML='<div class="cek-err">Lengkapi kode dan 4 digit WhatsApp.</div>';
+      return;
+    }
+    if(!CONFIG.APPS_SCRIPT_URL){
+      out.innerHTML='<div class="cek-err">Layanan pengecekan belum tersedia. Hubungi narahubung.</div>';
+      return;
+    }
+    btn.disabled=true; btn.textContent='Mencari...';
+    var url=CONFIG.APPS_SCRIPT_URL+'?action=status&kode='+encodeURIComponent(kode)+'&wa4='+wa4+'&t='+Date.now();
+    fetch(url,{cache:'no-store'})
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(!d.ok){
+          out.innerHTML='<div class="cek-err">'+esc(d.pesan||'Data tidak ditemukan.')+'</div>';
+          return;
+        }
+        var kats=(d.kategori||[]).map(function(k){return '<span class="cek-kat">'+esc(k)+'</span>';}).join('');
+        out.innerHTML='<div class="cek-result">'+
+          '<div class="nm">'+esc(d.nama)+'</div>'+
+          '<div class="cek-row"><span>KODE</span><div>'+esc(d.kode)+'</div></div>'+
+          '<div class="cek-row"><span>KATEGORI</span><div class="cek-kats">'+(kats||'-')+'</div></div>'+
+          '<div class="cek-row"><span>STATUS BAYAR</span><div>'+badge(d.statusBayar)+'</div></div>'+
+        '</div>';
+      })
+      .catch(function(){
+        out.innerHTML='<div class="cek-err">Gagal menghubungi server. Coba lagi atau hubungi narahubung.</div>';
+      })
+      .then(function(){btn.disabled=false; btn.textContent='Cek Status';});
+  });
+})();
+</script>
+</body>
+</html>
