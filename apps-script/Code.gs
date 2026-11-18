@@ -27,7 +27,7 @@ const KUOTA = {
   'GANDA CAMPURAN': { total: 20, alumni_maks: 6 }
 };
 
-const BATAS_MENUNGGU_JAM = 6;   // pendaftar yang belum konfirmasi bayar
+const BATAS_MENUNGGU_JAM = 12;   // pendaftar yang belum konfirmasi bayar
 const WA_NUMBER = '6285298936023';   // nomor narahubung (format internasional)
 const WA_NAME   = 'Alfin';
 
