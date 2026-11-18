@@ -41,6 +41,7 @@
 .cek-badge.lunas{background:#2E7D32;color:#fff}
 .cek-badge.kurang{background:#FFD200;color:#1A4973}
 .cek-badge.wait{background:rgba(251,246,234,.2);color:#FBF6EA;border:1px solid rgba(251,246,234,.35)}
+.cek-badge.exp{background:#8a2b2b;color:#fff}
 .cek-err{background:#fff5f4;border:1px solid #e6b5af;color:#a33;border-radius:12px;padding:16px;
   font-size:14px;margin-top:18px;text-align:center}
 .cek-note{text-align:center;font-size:13px;opacity:.55;margin-top:22px;line-height:1.6}
@@ -104,6 +105,7 @@
 
   function badge(st){
     var s=(st||'').toUpperCase();
+    if(/KEDALUWARSA/.test(s)) return '<span class="cek-badge exp">KEDALUWARSA</span>';
     if(/LUNAS|SELESAI|OK/.test(s)) return '<span class="cek-badge lunas">'+esc(s)+'</span>';
     if(/KURANG|BELUM|PERLU/.test(s)) return '<span class="cek-badge kurang">'+esc(s)+'</span>';
     return '<span class="cek-badge wait">'+esc(s||'MENUNGGU')+'</span>';
@@ -137,11 +139,19 @@
       }
       var kats=[data['Kategori 1'],data['Kategori 2']].filter(function(k){return !!k;});
       var katHtml=kats.map(function(k){return '<span class="cek-kat">'+esc(k)+'</span>';}).join('');
+      var st=labelStatus(data);
+      var catatan='';
+      if(st==='KEDALUWARSA'){
+        catatan='<div class="cek-note" style="text-align:left;margin-top:14px;color:#ffd9d9">'+
+          'Pembayaran belum terkonfirmasi dalam '+BATAS_MENUNGGU_JAM+' jam, jadi slot sudah dilepas. '+
+          'Kalau sudah transfer, hubungi narahubung agar dicatat ulang.</div>';
+      }
       out.innerHTML='<div class="cek-result">'+
         '<div class="nm">'+esc(data['Nama'])+'</div>'+
         '<div class="cek-row"><span>KODE</span><div>'+esc(kode)+'</div></div>'+
         '<div class="cek-row"><span>KATEGORI</span><div class="cek-kats">'+(katHtml||'-')+'</div></div>'+
-        '<div class="cek-row"><span>STATUS BAYAR</span><div>'+badge(data['Status Bayar'])+'</div></div>'+
+        '<div class="cek-row"><span>STATUS BAYAR</span><div>'+badge(st)+'</div></div>'+
+        catatan+
       '</div>';
     }).catch(function(err){
       out.innerHTML='<div class="cek-err">Gagal mengambil data: '+esc(err.message||'coba lagi')+'</div>';

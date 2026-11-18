@@ -27,6 +27,7 @@ const KUOTA = {
   'GANDA CAMPURAN': { total: 20, alumni_maks: 6 }
 };
 
+const BATAS_MENUNGGU_JAM = 6;   // pendaftar yang belum konfirmasi bayar
 const WA_NUMBER = '6285298936023';   // nomor narahubung (format internasional)
 const WA_NAME   = 'Alfin';
 
@@ -238,14 +239,16 @@ function hitungKuota(sheet) {
   for (const k in KUOTA) out[k] = { total: 0, alumni: 0, pria: 0, wanita: 0 };
   const last = sheet.getLastRow();
   if (last < 2) return out;
-  const rows = sheet.getRange(2, 6, last - 1, 10).getValues(); // kolom F..O
+  const rows = sheet.getRange(2, 1, last - 1, 15).getValues(); // kolom A..O
   for (const r of rows) {
-    const status = String(r[0] || '');
+    const waktu = r[0];                 // A
+    const status = String(r[5] || '');  // F
     const isAlumni = /alumni/i.test(status);
-    const gender = String(r[9] || ''); // kolom O
-    const bayar = String(r[4] || ''); // kolom J
-    if (/batal/i.test(bayar)) continue;   // baris yang dibatalkan tidak dihitung
-    for (const kat of [String(r[1] || ''), String(r[2] || '')]) {
+    const gender = String(r[14] || ''); // O
+    const bayar = String(r[9] || '');   // J
+    if (/batal/i.test(bayar)) continue;                  // dibatalkan
+    if (menungguKedaluwarsa(waktu, bayar)) continue;     // lewat batas konfirmasi
+    for (const kat of [String(r[6] || ''), String(r[7] || '')]) {  // G, H
       if (out[kat]) {
         out[kat].total++;
         if (isAlumni) out[kat].alumni++;
@@ -295,6 +298,15 @@ function page(inner, ok) {
     ${inner}
   </div></body></html>`;
   return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+
+function menungguKedaluwarsa(waktu, bayar) {
+  const b = String(bayar || '').toUpperCase();
+  const menunggu = b === '' || b.indexOf('MENUNGGU') >= 0;
+  if (!menunggu) return false;
+  const t = (waktu instanceof Date) ? waktu.getTime() : new Date(waktu).getTime();
+  if (!t || isNaN(t)) return false;
+  return (Date.now() - t) > BATAS_MENUNGGU_JAM * 3600 * 1000;
 }
 
 function jsonResponse(o) {
