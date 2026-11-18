@@ -248,7 +248,7 @@ async function loadQuota() {
   for (const [kat, ids] of Object.entries(KAT_MAP)) {
     const q = CONFIG.KUOTA[kat];
     const row = data[kat] || {};
-    const terdaftar = Number(row.terdaftar || 0);
+    const terdaftar = Number(row.terdaftar ?? row.total ?? 0);
     const alumni = Number(row.alumni || 0);
     const pct = Math.min(100, Math.round((terdaftar / q.total) * 100));
     const sisa = Math.max(0, q.total - terdaftar);
