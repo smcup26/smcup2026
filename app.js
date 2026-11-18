@@ -132,6 +132,26 @@ document.querySelectorAll('input[name="gender"]').forEach(r => {
 });
 terapkanGender();
 
+// ---------- biaya mengikuti jumlah kategori ----------
+function rupiahFee(n) { return 'Rp' + n.toLocaleString('id-ID'); }
+
+function perbaruiBiaya() {
+  const el = document.getElementById('fee-hint');
+  if (!el) return;
+  const statusEl = document.querySelector('input[name="status"]:checked');
+  const alumni = !!statusEl && /alumni/i.test(statusEl.value);
+  const tarif = alumni ? CONFIG.FEE_ALUMNI : CONFIG.FEE_AKTIF;
+  const jumlah = document.querySelectorAll('input[name^="kat"]:checked').length;
+  el.textContent = jumlah
+    ? 'Biaya: ' + rupiahFee(tarif) + ' × ' + jumlah + ' kategori = ' + rupiahFee(tarif * jumlah)
+    : 'Biaya: ' + rupiahFee(tarif) + ' per kategori';
+}
+
+document.querySelectorAll('input[name="status"], input[name^="kat"]').forEach(el => {
+  el.addEventListener('change', perbaruiBiaya);
+});
+perbaruiBiaya();
+
 function showErr(msg) {
   const box = document.getElementById('form-err');
   if (!box) return;
