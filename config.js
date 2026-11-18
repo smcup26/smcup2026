@@ -25,9 +25,9 @@ const CONFIG = {
 
   // Kuota per kategori (total & batas alumni)
   KUOTA: {
-    'GANDA PUTRA':     { total: 40, alumni_maks: 12 },
+    'GANDA PUTRA':     { total: 36, alumni_maks: 10 },
     'GANDA PUTRI':     { total: 20, alumni_maks: 6 },
-    'GANDA CAMPURAN':  { total: 20, alumni_maks: 6, pria: 10, wanita: 10 }
+    'GANDA CAMPURAN':  { total: 24, alumni_maks: 7, pria: 12, wanita: 12 }
   }
 };
 

@@ -22,9 +22,9 @@ const QRIS_URL = 'https://smcup26.github.io/smcup2026/assets/qris.png';
 const REK_BANK  = 'Mandiri · 1030012388753 · a.n. RAHMANIAH ZAINUDDIN';
 
 const KUOTA = {
-  'GANDA PUTRA':    { total: 40, alumni_maks: 12 },
+  'GANDA PUTRA':    { total: 36, alumni_maks: 10 },
   'GANDA PUTRI':    { total: 20, alumni_maks: 6 },
-  'GANDA CAMPURAN': { total: 20, alumni_maks: 6 }
+  'GANDA CAMPURAN': { total: 24, alumni_maks: 7, pria: 12, wanita: 12 }
 };
 
 const BATAS_MENUNGGU_JAM = 12;   // pendaftar yang belum konfirmasi bayar
@@ -93,15 +93,17 @@ function doPost(e) {
     hasilPerKat.push({ kat: kat, status: st });
   }
 
-  // ---- kuota Ganda Campuran per jenis kelamin (10 pria / 10 wanita) ----
+  // ---- kuota Ganda Campuran per jenis kelamin ----
   if (kats.indexOf('GANDA CAMPURAN') >= 0) {
     const gc = counts['GANDA CAMPURAN'];
-    if (gender === 'Laki-laki' && gc.pria >= 10) {
-      return page('Kuota pria Ganda Campuran sudah penuh (' + gc.pria + '/10). ' +
+    const maxPria = (KUOTA['GANDA CAMPURAN'].pria || 12);
+    const maxWanita = (KUOTA['GANDA CAMPURAN'].wanita || 12);
+    if (gender === 'Laki-laki' && gc.pria >= maxPria) {
+      return page('Kuota pria Ganda Campuran sudah penuh (' + gc.pria + '/' + maxPria + '). ' +
         'Silakan pilih kategori lain atau hubungi narahubung.', false);
     }
-    if (gender === 'Perempuan' && gc.wanita >= 10) {
-      return page('Kuota wanita Ganda Campuran sudah penuh (' + gc.wanita + '/10). ' +
+    if (gender === 'Perempuan' && gc.wanita >= maxWanita) {
+      return page('Kuota wanita Ganda Campuran sudah penuh (' + gc.wanita + '/' + maxWanita + '). ' +
         'Silakan pilih kategori lain atau hubungi narahubung.', false);
     }
   }
