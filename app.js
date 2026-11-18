@@ -253,6 +253,9 @@ async function loadQuota() {
 
   if (!data) return;
 
+  const upd = document.getElementById('kuota-updated');
+  if (upd) upd.textContent = 'Kuota diperbarui otomatis · ' + new Date().toLocaleTimeString('id-ID', {hour:'2-digit',minute:'2-digit'}) + ' WIB';
+
   for (const [kat, ids] of Object.entries(KAT_MAP)) {
     const q = CONFIG.KUOTA[kat];
     const row = data[kat] || {};
