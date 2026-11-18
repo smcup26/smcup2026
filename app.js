@@ -285,6 +285,7 @@ async function loadQuota() {
   }
 }
 loadQuota();
+setInterval(loadQuota, 60000);
 
 // ---------- tautan WhatsApp ----------
 function waLink(msg) {
