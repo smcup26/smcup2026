@@ -1,10 +1,10 @@
 {
   "GANDA PUTRA": {
-    "terdaftar": 19,
+    "terdaftar": 21,
     "alumni": 2,
-    "pria": 19,
+    "pria": 21,
     "wanita": 0,
-    "total": 19
+    "total": 21
   },
   "GANDA PUTRI": {
     "terdaftar": 13,
@@ -14,10 +14,10 @@
     "total": 13
   },
   "GANDA CAMPURAN": {
-    "terdaftar": 20,
+    "terdaftar": 22,
     "alumni": 3,
-    "pria": 10,
+    "pria": 12,
     "wanita": 10,
-    "total": 20
+    "total": 22
   }
 }
