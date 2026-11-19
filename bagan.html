@@ -39,9 +39,9 @@
 
 .match{background:#fff;border:1px solid rgba(26,73,115,.16);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);position:relative}
 .match.final{border:2px solid var(--hot)}
-.match-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
-.match-id{font-weight:800;font-size:11px;letter-spacing:.14em;color:var(--navy);opacity:.55}
-.match-meta{display:flex;gap:6px;flex-wrap:wrap}
+.match-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.match-id{font-weight:800;font-size:11px;letter-spacing:.14em;color:var(--navy);opacity:.55;white-space:nowrap;flex:none}
+.match-meta{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;justify-content:flex-end}
 .badge{font-weight:800;font-size:10px;letter-spacing:.1em;padding:4px 9px;border-radius:6px;white-space:nowrap}
 .badge.hari1{background:rgba(26,73,115,.1);color:var(--navy)}
 .badge.hari2{background:var(--navy);color:var(--yellow)}
@@ -99,15 +99,15 @@
   <div class="wrap">
     <div class="sec-head">
       <div class="kicker">Bagan Pertandingan</div>
-      <h2>37 Pertandingan<br><span class="y">40 Tim · 3 Kategori</span></h2>
-      <p>Pasangan diundi pada <b>Technical Meeting 23 November 2026</b>. Halaman ini diperbarui setelah undian —
+      <h2><span id="jml-pertandingan">37</span> Pertandingan<br><span class="y"><span id="jml-tim">40</span> Tim · 3 Kategori</span></h2>
+      <p>Pasangan diundi pada <b>Technical Meeting 25 November 2026</b>. Halaman ini diperbarui setelah undian —
         slot bertuliskan <i>TBD</i> akan terisi nama pasangan dan pemenang seiring pertandingan berjalan.</p>
     </div>
 
     <div class="bagan-note">
-      <b>Aturan bye.</b> Karena jumlah tim bukan pangkat dua, sebagian pasangan yang diundi pada urutan pertama
-      menerima <b>bye</b> dan langsung masuk ke ronde berikutnya tanpa bermain.
-      Ganda Putra: 12 bye · Ganda Putri: 6 bye · Ganda Campuran: 6 bye.
+      <b>Aturan bye.</b> Karena jumlah tim bukan pangkat dua, sejumlah pasangan teratas menerima
+      <b>bye</b> dan langsung masuk ke ronde berikutnya tanpa bermain.
+      <span id="info-bye">Ganda Putra: 1 bye · Ganda Putri: 6 bye · Ganda Campuran: 1 bye.</span>
     </div>
     <div class="bagan-note">
       <b>Format skor.</b> Semua pertandingan memakai <b>best of 3 game ke 15 poin</b> (sistem skor terbaru BWF,
@@ -134,11 +134,11 @@
     <div class="bagan-sec" style="margin-top:52px">
       <div class="bagan-sec-head">
         <h3>Mabar Kelurahan</h3>
-        <span class="cnt">10.30 – 13.00 WIB · SEMUA LAPANGAN</span>
+        <span class="cnt">10.45 – 13.00 WIB · SEMUA LAPANGAN</span>
       </div>
       <div class="bagan-note" style="margin-top:20px">
         <b>Penutup hari kedua: Mabar Kelurahan.</b>
-        Setelah final terakhir (09.30) dan penyerahan hadiah (10.00–10.30), seluruh lapangan
+        Setelah final terakhir (09.30–10.15) dan penyerahan hadiah (10.15–10.45), seluruh lapangan
         dibuka untuk mabar — pertandingan santai antar angkatan tanpa bagan dan tanpa skor resmi.
         Kesempatan terakhir bermain sebelum pulang.
       </div>

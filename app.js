@@ -24,11 +24,18 @@ const cdH = document.getElementById('cd-h');
 const cdM = document.getElementById('cd-m');
 const cdS = document.getElementById('cd-s');
 
+function tanggalCount(d) {
+  const tgl = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+  const jam = d.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }).replace(':', '.');
+  return tgl + ' · ' + jam + ' WIB';
+}
+
 function tick() {
   if (!cdD) return;
   const now = new Date();
   const open = new Date(CONFIG.REG_OPEN);
   const close = new Date(CONFIG.REG_CLOSE);
+  const countT = document.querySelector('.count-t');
   let target = open;
   let label = 'Pendaftaran dibuka dalam';
 
@@ -39,11 +46,13 @@ function tick() {
     cdD.textContent = '0'; cdH.textContent = '0'; cdM.textContent = '0'; cdS.textContent = '0';
     const kicker = document.querySelector('.count .kicker');
     if (kicker) kicker.textContent = 'Pendaftaran telah ditutup';
+    if (countT) countT.textContent = 'Pendaftaran ditutup';
     return;
   }
 
   const kicker = document.querySelector('.count .kicker');
   if (kicker) kicker.textContent = label;
+  if (countT) countT.textContent = tanggalCount(target);
 
   let diff = Math.max(0, Math.floor((target - now) / 1000));
   const d = Math.floor(diff / 86400); diff %= 86400;
