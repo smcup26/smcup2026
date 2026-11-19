@@ -22,9 +22,9 @@ const QRIS_URL = 'https://smcup26.github.io/smcup2026/assets/qris.png';
 const REK_BANK  = 'Mandiri · 1030012388753 · a.n. RAHMANIAH ZAINUDDIN';
 
 const KUOTA = {
-  'GANDA PUTRA':    { total: 36, alumni_maks: 10 },
+  'GANDA PUTRA':    { total: 30, alumni_maks: 9 },
   'GANDA PUTRI':    { total: 20, alumni_maks: 6 },
-  'GANDA CAMPURAN': { total: 24, alumni_maks: 7, pria: 12, wanita: 12 }
+  'GANDA CAMPURAN': { total: 30, alumni_maks: 9, pria: 15, wanita: 15 }
 };
 
 const BATAS_MENUNGGU_JAM = 12;   // pendaftar yang belum konfirmasi bayar
