@@ -28,7 +28,10 @@ const CONFIG = {
     'GANDA PUTRA':     { total: 30, alumni_maks: 9 },
     'GANDA PUTRI':     { total: 20, alumni_maks: 6 },
     'GANDA CAMPURAN':  { total: 30, alumni_maks: 9, pria: 15, wanita: 15 }
-  }
+  },
+
+  // Kategori yang pendaftarannya ditutup
+  TUTUP: ['GANDA PUTRA'],
 };
 
 // Nomor WA rapi untuk ditampilkan ke pengunjung

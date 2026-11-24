@@ -28,6 +28,7 @@ const KUOTA = {
 };
 
 const BATAS_MENUNGGU_JAM = 12;   // pendaftar yang belum konfirmasi bayar
+const TUTUP_KATEGORI = ['GANDA PUTRA'];   // pendaftaran ditutup
 const WA_NUMBER = '6285298936023';   // nomor narahubung (format internasional)
 const WA_NAME   = 'Alfin';
 
@@ -55,6 +56,9 @@ function doPost(e) {
   if (kats.length > 2) return page('Maksimal dua kategori per peserta.', false);
   for (const k of kats) {
     if (!KUOTA[k]) return page('Kategori tidak dikenal: ' + k, false);
+    if (TUTUP_KATEGORI.indexOf(k) >= 0) {
+      return page('Pendaftaran ' + k + ' sudah ditutup. Silakan pilih kategori lain.', false);
+    }
   }
 
   if (!prodi) return page('Program studi wajib diisi.', false);

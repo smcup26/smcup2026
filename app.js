@@ -141,6 +141,16 @@ document.querySelectorAll('input[name="gender"]').forEach(r => {
 });
 terapkanGender();
 
+// ---------- kategori yang ditutup ----------
+document.querySelectorAll('input[name^="kat"]').forEach(cb => {
+  if ((CONFIG.TUTUP || []).indexOf(cb.value) >= 0) {
+    cb.disabled = true;
+    cb.checked = false;
+    const lbl = cb.parentElement.querySelector('span');
+    if (lbl && lbl.textContent.indexOf('ditutup') < 0) lbl.textContent += ' (ditutup)';
+  }
+});
+
 // ---------- biaya mengikuti jumlah kategori ----------
 function rupiahFee(n) { return 'Rp' + n.toLocaleString('id-ID'); }
 
@@ -265,10 +275,12 @@ async function loadQuota() {
   const upd = document.getElementById('kuota-updated');
   if (upd) upd.textContent = 'Kuota diperbarui otomatis · ' + new Date().toLocaleTimeString('id-ID', {hour:'2-digit',minute:'2-digit'}) + ' WIB';
 
+  const ditutup = CONFIG.TUTUP || [];
   for (const [kat, ids] of Object.entries(KAT_MAP)) {
     const q = CONFIG.KUOTA[kat];
     const row = data[kat] || {};
-    const terdaftar = Number(row.terdaftar ?? row.total ?? 0);
+    const tutup = ditutup.indexOf(kat) >= 0;
+    const terdaftar = tutup ? q.total : Number(row.terdaftar ?? row.total ?? 0);
     const alumni = Number(row.alumni || 0);
     const pct = Math.min(100, Math.round((terdaftar / q.total) * 100));
     const sisa = Math.max(0, q.total - terdaftar);
@@ -276,7 +288,7 @@ async function loadQuota() {
     const bar = document.getElementById(ids[0]);
     if (bar) bar.style.width = pct + '%';
     const sisaEl = document.getElementById(ids[1]);
-    if (sisaEl) sisaEl.textContent = 'Sisa slot: ' + sisa + (sisa === 0 ? ' (penuh)' : '');
+    if (sisaEl) sisaEl.textContent = tutup ? 'Sisa slot: 0 (ditutup)' : 'Sisa slot: ' + sisa + (sisa === 0 ? ' (penuh)' : '');
     const alEl = document.getElementById(ids[2]);
     if (alEl) alEl.textContent = 'Alumni: ' + alumni + '/' + q.alumni_maks;
 
