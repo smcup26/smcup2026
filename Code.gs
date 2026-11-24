@@ -28,7 +28,7 @@ const KUOTA = {
 };
 
 const BATAS_MENUNGGU_JAM = 12;   // pendaftar yang belum konfirmasi bayar
-const TUTUP_KATEGORI = ['GANDA PUTRA'];   // pendaftaran ditutup
+const TUTUP_KATEGORI = [];   // pendaftaran ditutup
 const WA_NUMBER = '6285298936023';   // nomor narahubung (format internasional)
 const WA_NAME   = 'Alfin';
 
