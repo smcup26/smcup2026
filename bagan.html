@@ -149,6 +149,38 @@
   </div>
 </section>
 
+<section class="sec" id="daftar-pemain">
+  <div class="wrap">
+    <div class="bagan-sec" style="margin-top:0">
+      <div class="bagan-sec-head">
+        <h3>Daftar Pemain</h3>
+        <span class="cnt" id="pemain-total">MEMUAT…</span>
+      </div>
+
+      <div class="pemain-tools">
+        <div class="pemain-tabs" id="pemain-tabs">
+          <button class="on" data-kat="SEMUA">Semua <b>—</b></button>
+          <button data-kat="GANDA PUTRA">Ganda Putra <b>—</b></button>
+          <button data-kat="GANDA PUTRI">Ganda Putri <b>—</b></button>
+          <button data-kat="GANDA CAMPURAN">Ganda Campuran <b>—</b></button>
+        </div>
+        <input id="pemain-cari" type="search" placeholder="Cari nama atau kode…">
+      </div>
+
+      <div class="pemain-wrap">
+        <table class="pemain-tbl">
+          <thead><tr><th>No</th><th>Kode</th><th>Nama</th><th>Kategori</th></tr></thead>
+          <tbody id="pemain-isi"><tr><td colspan="4" class="pemain-empty">Memuat…</td></tr></tbody>
+        </table>
+      </div>
+
+      <p class="pemain-note">Diambil langsung dari data pendaftaran. Pendaftaran batal dan yang kedaluwarsa tidak ditampilkan.
+        Satu nama bisa tampil dengan dua kategori jika ikut dua nomor. Peserta bertanda
+        <b>menunggu pembayaran</b> sudah konfirmasi ikut, tetapi slotnya belum dihitung di kuota.</p>
+    </div>
+  </div>
+</section>
+
 <section class="sec sec-light" style="padding-top:0" id="wadah-bagan">
   <div class="wrap" id="bagan-root">
     <p style="font-weight:600;font-size:15px;opacity:.7">Memuat bagan…</p>
@@ -181,38 +213,6 @@
   </div>
 </section>
 
-
-<section class="sec" style="padding-top:0" id="daftar-pemain">
-  <div class="wrap">
-    <div class="bagan-sec" style="margin-top:44px">
-      <div class="bagan-sec-head">
-        <h3>Daftar Pemain</h3>
-        <span class="cnt" id="pemain-total">MEMUAT…</span>
-      </div>
-
-      <div class="pemain-tools">
-        <div class="pemain-tabs" id="pemain-tabs">
-          <button class="on" data-kat="SEMUA">Semua <b>—</b></button>
-          <button data-kat="GANDA PUTRA">Ganda Putra <b>—</b></button>
-          <button data-kat="GANDA PUTRI">Ganda Putri <b>—</b></button>
-          <button data-kat="GANDA CAMPURAN">Ganda Campuran <b>—</b></button>
-        </div>
-        <input id="pemain-cari" type="search" placeholder="Cari nama atau kode…">
-      </div>
-
-      <div class="pemain-wrap">
-        <table class="pemain-tbl">
-          <thead><tr><th>No</th><th>Kode</th><th>Nama</th><th>Kategori</th></tr></thead>
-          <tbody id="pemain-isi"><tr><td colspan="4" class="pemain-empty">Memuat…</td></tr></tbody>
-        </table>
-      </div>
-
-      <p class="pemain-note">Diambil langsung dari data pendaftaran. Pendaftaran batal dan yang kedaluwarsa tidak ditampilkan.
-        Satu nama bisa tampil dengan dua kategori jika ikut dua nomor. Peserta bertanda
-        <b>menunggu pembayaran</b> sudah konfirmasi ikut, tetapi slotnya belum dihitung di kuota.</p>
-    </div>
-  </div>
-</section>
 
 <footer class="site-foot">
   <div class="wrap foot-in">
