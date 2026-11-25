@@ -69,6 +69,31 @@
   .round-grid{grid-template-columns:1fr}
   .champ-ic{width:44px;height:44px}
 }
+
+/* ---------- daftar pemain ---------- */
+.pemain-tools{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:18px}
+.pemain-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.pemain-tabs button{border:1.5px solid rgba(26,73,115,.25);background:#fff;color:var(--navy);
+  border-radius:8px;padding:9px 14px;font:inherit;font-weight:700;font-size:12.5px;cursor:pointer}
+.pemain-tabs button.on{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+.pemain-tabs b{opacity:.6;margin-left:4px}
+#pemain-cari{border:1.5px solid rgba(26,73,115,.25);border-radius:8px;padding:10px 14px;
+  font:inherit;font-size:13.5px;color:var(--navy);min-width:230px}
+.pemain-wrap{margin-top:16px;background:#fff;border:1px solid rgba(26,73,115,.14);border-radius:12px;
+  overflow:auto;max-height:560px;box-shadow:var(--shadow)}
+.pemain-tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.pemain-tbl th{position:sticky;top:0;background:var(--navy);color:var(--cream);text-align:left;
+  padding:11px 14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;z-index:2}
+.pemain-tbl td{padding:9px 14px;border-bottom:1px solid rgba(26,73,115,.10);vertical-align:top}
+.pemain-tbl tr:nth-child(even) td{background:rgba(26,73,115,.025)}
+.pemain-tbl td.no{opacity:.45;width:50px}
+.pemain-tbl td.kode{font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.pemain-tbl td.nama{font-weight:600}
+.pemain-tbl td.kat{font-size:12px;opacity:.75}
+.pemain-empty{text-align:center;padding:28px!important;opacity:.5}
+.tag-pending{display:inline-block;margin-top:4px;font-size:10px;font-weight:800;letter-spacing:.06em;
+  background:#FFF3C4;color:#8A5A00;padding:3px 6px;border-radius:4px}
+.pemain-note{font-size:12px;opacity:.55;margin-top:12px;line-height:1.6}
 </style>
 </head>
 <body>
@@ -86,6 +111,7 @@
       <a href="index.html#syarat">Syarat</a>
       <a href="index.html#galeri">Galeri</a>
       <a href="index.html#donasi">Donasi</a>
+      <a href="#daftar-pemain">Pemain</a>
       <a href="bagan.html" class="menu-act">Bagan</a>
       <a href="index.html#daftar" class="btn btn-sm">Daftar</a>
     </nav>
@@ -155,6 +181,39 @@
   </div>
 </section>
 
+
+<section class="sec" style="padding-top:0" id="daftar-pemain">
+  <div class="wrap">
+    <div class="bagan-sec" style="margin-top:44px">
+      <div class="bagan-sec-head">
+        <h3>Daftar Pemain</h3>
+        <span class="cnt" id="pemain-total">MEMUAT…</span>
+      </div>
+
+      <div class="pemain-tools">
+        <div class="pemain-tabs" id="pemain-tabs">
+          <button class="on" data-kat="SEMUA">Semua <b>—</b></button>
+          <button data-kat="GANDA PUTRA">Ganda Putra <b>—</b></button>
+          <button data-kat="GANDA PUTRI">Ganda Putri <b>—</b></button>
+          <button data-kat="GANDA CAMPURAN">Ganda Campuran <b>—</b></button>
+        </div>
+        <input id="pemain-cari" type="search" placeholder="Cari nama atau kode…">
+      </div>
+
+      <div class="pemain-wrap">
+        <table class="pemain-tbl">
+          <thead><tr><th>No</th><th>Kode</th><th>Nama</th><th>Kategori</th></tr></thead>
+          <tbody id="pemain-isi"><tr><td colspan="4" class="pemain-empty">Memuat…</td></tr></tbody>
+        </table>
+      </div>
+
+      <p class="pemain-note">Diambil langsung dari data pendaftaran. Pendaftaran batal dan yang kedaluwarsa tidak ditampilkan.
+        Satu nama bisa tampil dengan dua kategori jika ikut dua nomor. Peserta bertanda
+        <b>menunggu pembayaran</b> sudah konfirmasi ikut, tetapi slotnya belum dihitung di kuota.</p>
+    </div>
+  </div>
+</section>
+
 <footer class="site-foot">
   <div class="wrap foot-in">
     <div class="foot-l">
@@ -180,8 +239,92 @@
   </div>
 </footer>
 
-<script src="config.js"></script>
-<script src="app.js"></script>
+<script src="config.js?v=14"></script>
+<script src="data.js?v=14"></script>
+<script src="app.js?v=14"></script>
 <script src="bagan.js"></script>
+
+<script>
+(function(){
+  var isi=document.getElementById('pemain-isi');
+  if(!isi || typeof ambilPendaftaran!=='function') return;
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function kunci(r){
+    var w=String(r['No WA']||'').replace(/\D/g,'').replace(/^(62|0)/,'');
+    var n=String(r['Nama']||'').toLowerCase().replace(/\s+/g,' ').trim();
+    return w + '|' + n;
+  }
+
+  // Peserta yang sudah konfirmasi tapi belum dibayar: tetap tampil, tapi kuota tidak dihitung
+  var PENDING = ['SMC-0061'];
+
+  ambilPendaftaran().then(function(rows){
+    var aktif=rows.filter(function(r){
+      var kode=String(r['Kode']||'').toUpperCase();
+      if(PENDING.indexOf(kode)>=0) return true;
+      if(/batal/i.test(r['Status Bayar']||'')) return false;
+      return !(typeof sudahKedaluwarsa==='function' && sudahKedaluwarsa(r));
+    });
+
+    var map={};
+    aktif.forEach(function(r){
+      var k=kunci(r), o=map[k]||(map[k]={nama:'',kode:[],kat:[],pending:false});
+      o.nama=r['Nama']||o.nama;
+      if(PENDING.indexOf(String(r['Kode']||'').toUpperCase())>=0) o.pending=true;
+      if(r['Kode']) o.kode.push(r['Kode']);
+      [r['Kategori 1'],r['Kategori 2']].forEach(function(c){
+        if(c && o.kat.indexOf(c)<0) o.kat.push(c);
+      });
+    });
+
+    var orang=Object.keys(map).map(function(k){
+      var o=map[k]; o.kode.sort(); o.kat.sort(); return o;
+    });
+    orang.sort(function(a,b){return a.nama.localeCompare(b.nama,'id');});
+
+    document.getElementById('pemain-total').textContent=orang.length+' PEMAIN TERDAFTAR';
+    document.querySelectorAll('#pemain-tabs button').forEach(function(b){
+      var k=b.dataset.kat;
+      var n=orang.filter(function(o){return k==='SEMUA'||o.kat.indexOf(k)>=0;}).length;
+      b.querySelector('b').textContent=n;
+    });
+
+    var filter='SEMUA', q='';
+
+    function render(){
+      var list=orang.filter(function(o){
+        if(filter!=='SEMUA' && o.kat.indexOf(filter)<0) return false;
+        if(!q) return true;
+        return o.nama.toLowerCase().indexOf(q)>=0 || o.kode.join(' ').toLowerCase().indexOf(q)>=0;
+      });
+      isi.innerHTML = list.length ? list.map(function(o,i){
+        return '<tr><td class="no">'+(i+1)+'</td>'+
+          '<td class="kode">'+o.kode.map(esc).join('<br>')+'</td>'+
+          '<td class="nama">'+esc(o.nama)+'</td>'+
+          '<td class="kat">'+o.kat.map(esc).join('<br>')+
+          (o.pending ? '<br><span class="tag-pending">MENUNGGU PEMBAYARAN</span>' : '')+'</td></tr>';
+      }).join('') : '<tr><td colspan="4" class="pemain-empty">Tidak ada peserta yang cocok.</td></tr>';
+    }
+
+    document.querySelectorAll('#pemain-tabs button').forEach(function(b){
+      b.addEventListener('click',function(){
+        document.querySelectorAll('#pemain-tabs button').forEach(function(x){x.classList.remove('on');});
+        b.classList.add('on'); filter=b.dataset.kat; render();
+      });
+    });
+    document.getElementById('pemain-cari').addEventListener('input',function(e){
+      q=e.target.value.trim().toLowerCase(); render();
+    });
+
+    render();
+  }).catch(function(){
+    isi.innerHTML='<tr><td colspan="4" class="pemain-empty">Gagal memuat data. Coba muat ulang halaman.</td></tr>';
+  });
+})();
+</script>
+
 </body>
 </html>
