@@ -16,7 +16,7 @@ const CONFIG = {
 
   // Tanggal penting (format ISO: YYYY-MM-DDTHH:MM:SS)
   REG_OPEN:  '2026-11-18T00:00:00',
-  REG_CLOSE: '2026-11-26T14:21:00',
+  REG_CLOSE: '2026-11-26T20:00:00',
   EVENT_START: '2026-12-05T08:00:00',
 
   // Biaya pendaftaran
