@@ -256,7 +256,7 @@
   }
 
   // Peserta yang sudah konfirmasi tapi belum dibayar: tetap tampil, tapi kuota tidak dihitung
-  var PENDING = ['SMC-0061'];
+  var PENDING = [];
 
   ambilPendaftaran().then(function(rows){
     var aktif=rows.filter(function(r){
