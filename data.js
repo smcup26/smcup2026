@@ -1,7 +1,7 @@
 /* Pembaca data pendaftaran langsung dari Google Sheets (CSV publik).
    Dipakai oleh halaman status dan penghitung kuota. */
 const BATAS_MENUNGGU_JAM = 12;
-const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1kwkPPWZleL0zDvCq3FUHBNSHahX0OAWeNzWTdGvPZts/export?format=csv&gid=0';
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1kwkPPWZleL0zDvCq3FUHBNSHahX0OAWeNzWTdGvPZts/gviz/tq?tqx=out:csv&gid=0';
 
 function parseCsvTeks(teks) {
   const baris = [];
