@@ -10,7 +10,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "08:00",
+   "jam": "08:15",
    "lapangan": 1,
    "tim_a": null,
    "tim_b": null,
@@ -26,7 +26,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "08:00",
+   "jam": "08:15",
    "lapangan": 2,
    "tim_a": null,
    "tim_b": null,
@@ -42,7 +42,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "08:00",
+   "jam": "08:15",
    "lapangan": 3,
    "tim_a": null,
    "tim_b": null,
@@ -58,7 +58,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "08:00",
+   "jam": "08:15",
    "lapangan": 4,
    "tim_a": null,
    "tim_b": null,
@@ -74,7 +74,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "08:25",
+   "jam": "08:40",
    "lapangan": 1,
    "tim_a": null,
    "tim_b": null,
@@ -90,7 +90,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "08:25",
+   "jam": "08:40",
    "lapangan": 2,
    "tim_a": null,
    "tim_b": null,
@@ -106,7 +106,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "08:25",
+   "jam": "08:40",
    "lapangan": 3,
    "tim_a": null,
    "tim_b": null,
@@ -122,7 +122,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "10:05",
+   "jam": "10:20",
    "lapangan": 1,
    "tim_a": null,
    "tim_b": null,
@@ -138,7 +138,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "10:05",
+   "jam": "10:20",
    "lapangan": 2,
    "tim_a": null,
    "tim_b": null,
@@ -154,7 +154,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "10:05",
+   "jam": "10:20",
    "lapangan": 3,
    "tim_a": null,
    "tim_b": null,
@@ -170,7 +170,7 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 1,
-   "jam": "10:05",
+   "jam": "10:20",
    "lapangan": 4,
    "tim_a": null,
    "tim_b": null,
@@ -218,8 +218,8 @@
   {
    "kat": "GANDA PUTRA",
    "hari": 2,
-   "jam": "08:45",
-   "lapangan": 3,
+   "jam": "09:30",
+   "lapangan": 1,
    "tim_a": null,
    "tim_b": null,
    "skor": "",
@@ -234,7 +234,7 @@
   {
    "kat": "GANDA PUTRI",
    "hari": 1,
-   "jam": "08:25",
+   "jam": "08:40",
    "lapangan": 4,
    "tim_a": null,
    "tim_b": null,
@@ -250,7 +250,7 @@
   {
    "kat": "GANDA PUTRI",
    "hari": 1,
-   "jam": "08:50",
+   "jam": "09:05",
    "lapangan": 1,
    "tim_a": null,
    "tim_b": null,
@@ -266,7 +266,7 @@
   {
    "kat": "GANDA PUTRI",
    "hari": 1,
-   "jam": "10:30",
+   "jam": "10:45",
    "lapangan": 1,
    "tim_a": null,
    "tim_b": null,
@@ -282,7 +282,7 @@
   {
    "kat": "GANDA PUTRI",
    "hari": 1,
-   "jam": "10:30",
+   "jam": "10:45",
    "lapangan": 2,
    "tim_a": null,
    "tim_b": null,
@@ -298,7 +298,7 @@
   {
    "kat": "GANDA PUTRI",
    "hari": 1,
-   "jam": "10:30",
+   "jam": "10:45",
    "lapangan": 3,
    "tim_a": null,
    "tim_b": null,
@@ -314,7 +314,7 @@
   {
    "kat": "GANDA PUTRI",
    "hari": 1,
-   "jam": "10:30",
+   "jam": "10:45",
    "lapangan": 4,
    "tim_a": null,
    "tim_b": null,
@@ -346,8 +346,8 @@
   {
    "kat": "GANDA PUTRI",
    "hari": 2,
-   "jam": "08:00",
-   "lapangan": 4,
+   "jam": "08:45",
+   "lapangan": 1,
    "tim_a": null,
    "tim_b": null,
    "skor": "",
@@ -362,8 +362,8 @@
   {
    "kat": "GANDA PUTRI",
    "hari": 2,
-   "jam": "08:45",
-   "lapangan": 4,
+   "jam": "09:30",
+   "lapangan": 2,
    "tim_a": null,
    "tim_b": null,
    "skor": "",
@@ -378,7 +378,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "08:50",
+   "jam": "09:05",
    "lapangan": 2,
    "tim_a": null,
    "tim_b": null,
@@ -394,7 +394,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "08:50",
+   "jam": "09:05",
    "lapangan": 3,
    "tim_a": null,
    "tim_b": null,
@@ -410,7 +410,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "08:50",
+   "jam": "09:05",
    "lapangan": 4,
    "tim_a": null,
    "tim_b": null,
@@ -426,7 +426,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "09:15",
+   "jam": "09:30",
    "lapangan": 1,
    "tim_a": null,
    "tim_b": null,
@@ -442,7 +442,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "09:15",
+   "jam": "09:30",
    "lapangan": 2,
    "tim_a": null,
    "tim_b": null,
@@ -458,7 +458,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "09:15",
+   "jam": "09:30",
    "lapangan": 3,
    "tim_a": null,
    "tim_b": null,
@@ -474,7 +474,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "09:15",
+   "jam": "09:30",
    "lapangan": 4,
    "tim_a": null,
    "tim_b": null,
@@ -490,7 +490,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "10:55",
+   "jam": "11:10",
    "lapangan": 1,
    "tim_a": null,
    "tim_b": null,
@@ -506,7 +506,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "10:55",
+   "jam": "11:10",
    "lapangan": 2,
    "tim_a": null,
    "tim_b": null,
@@ -522,7 +522,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "10:55",
+   "jam": "11:10",
    "lapangan": 3,
    "tim_a": null,
    "tim_b": null,
@@ -538,7 +538,7 @@
   {
    "kat": "GANDA CAMPURAN",
    "hari": 1,
-   "jam": "10:55",
+   "jam": "11:10",
    "lapangan": 4,
    "tim_a": null,
    "tim_b": null,
@@ -555,7 +555,7 @@
    "kat": "GANDA CAMPURAN",
    "hari": 2,
    "jam": "08:45",
-   "lapangan": 1,
+   "lapangan": 2,
    "tim_a": null,
    "tim_b": null,
    "skor": "",
@@ -571,7 +571,7 @@
    "kat": "GANDA CAMPURAN",
    "hari": 2,
    "jam": "08:45",
-   "lapangan": 2,
+   "lapangan": 3,
    "tim_a": null,
    "tim_b": null,
    "skor": "",
@@ -587,7 +587,7 @@
    "kat": "GANDA CAMPURAN",
    "hari": 2,
    "jam": "09:30",
-   "lapangan": 1,
+   "lapangan": 3,
    "tim_a": null,
    "tim_b": null,
    "skor": "",
@@ -609,13 +609,13 @@
   },
   "hari2": {
    "mulai": "08:00",
-   "selesai": "13:00",
-   "lapangan": 4,
+   "selesai": "10:45",
+   "lapangan": 3,
    "harga_per_jam": 35000
   }
  },
  "jadwal_kaki": {
-  "hari1": "Semua pertandingan babak awal selesai sekitar pukul 11:20.",
-  "hari2": "Semifinal & final selesai sekitar pukul 10.15, dilanjutkan penyerahan hadiah (10.15–10.45) dan Mabar Kelurahan (10.45–13.00)."
+  "hari1": "Semua pertandingan babak awal selesai sekitar pukul 11:35.",
+  "hari2": "Semifinal & final selesai sekitar pukul 10.15, dilanjutkan penyerahan hadiah (10.15–10.45)."
  }
 }
